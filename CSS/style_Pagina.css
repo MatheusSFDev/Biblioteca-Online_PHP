@@ -1,0 +1,126 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.dashboard-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.welcome-card {
+    background-color: #2d3748;
+    padding: 60px 80px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+}
+
+.welcome-title {
+    color: #ffffff;
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.welcome-subtitle {
+    color: #a0aec0;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.welcome-user {
+    color: #48bb78;
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+
+.welcome-message {
+    color: #cbd5e0;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+.btn-logout {
+    padding: 15px 40px;
+    background: linear-gradient(90deg, #f56565, #e53e3e);
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-logout:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(245, 101, 101, 0.4);
+    background: linear-gradient(90deg, #e53e3e, #c53030);
+}
+
+.btn-logout:active {
+    transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .welcome-card {
+        padding: 40px 30px;
+    }
+    
+    .welcome-title {
+        font-size: 32px;
+    }
+    
+    .welcome-user {
+        font-size: 24px;
+    }
+    
+    .welcome-message {
+        font-size: 14px;
+    }
+    
+    .btn-logout {
+        padding: 12px 30px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome-card {
+        padding: 30px 20px;
+    }
+    
+    .welcome-title {
+        font-size: 28px;
+    }
+    
+    .welcome-user {
+        font-size: 20px;
+    }
+}

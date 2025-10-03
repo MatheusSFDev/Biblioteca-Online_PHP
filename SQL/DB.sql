@@ -20,3 +20,6 @@ CREATE TABLE juegos (
 
     constraint jue_pro_fk foreign key (propietario) references usuarios(email)
 );
+
+CREATE USER 'adminPHP'@'localhost' identified by 'qwerty-1234';
+GRANT all ON bibliotecaOnline.* TO 'adminPHP'@'localhost'; 
