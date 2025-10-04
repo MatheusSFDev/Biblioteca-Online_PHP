@@ -87,6 +87,32 @@ body {
     transform: translateY(0);
 }
 
+.btn-juego {
+    padding: 15px 40px;
+    background: linear-gradient(90deg, #76f565, #52e53e);
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-juego:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(106, 245, 101, 0.4);
+    background: linear-gradient(90deg, #52e53e, #30c538);
+}
+
+.btn-juego:active {
+    transform: translateY(0);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .welcome-card {

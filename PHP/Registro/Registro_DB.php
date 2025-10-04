@@ -8,53 +8,7 @@ $passwd = $_POST["passwd"];
 $passwd_R = $_POST["passwd_R"];
 $passwd_H = password_hash($passwd, PASSWORD_DEFAULT);
 
-$correct = true;
-
-if (!preg_match("/^[a-zA-Z-' ]*$/", $nombre) || empty($nombre)) {
-    $correct = false;
-    $_SESSION["nombre"] = "";
-
-    if (empty($nombre)) {
-        $_SESSION["err_Nombre"] = "<p>! El Campo esta Vacio !</p>";
-    } elseif (!preg_match("/^[a-zA-Z-' ]*$/", $nombre)) {
-        $_SESSION["err_Nombre"] = "<p>! Solo se permiten letras, espacios y el caracter (') !</p>";
-    }
-} else {
-    $_SESSION["nombre"] = $nombre;
-    $_SESSION["err_Nombre"] = "";
-}
-
-if (!filter_var($email, FILTER_VALIDATE_EMAIL) || empty($email) || !emailValido($email)) {
-    $correct = false;
-    $_SESSION["email"] = "";
-
-    if (empty($email)) {
-        $_SESSION["err_Email"] = "<p>! El Campo esta Vacio !</p>";
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $_SESSION["err_Email"] = "<p>! No Cumple con un formato correcto de Correo !</p>";
-    }  elseif (!emailValido($email)) {
-        $_SESSION["err_Email"] = "<p>! El Correo Introducido ya Existe !</p>";
-    }
-} else {
-    $_SESSION["email"] = $email;
-    $_SESSION["err_Email"] = "";
-}
-
-if ($passwd !== $passwd_R || empty($passwd)) { 
-    $correct = false; 
-    $_SESSION["passwd"] = "";
-
-    if (empty($passwd)) {
-        $_SESSION["err_Passwd"] = "<p>! El Campo esta Vacio !</p>";
-    } elseif ($passwd !== $passwd_R) {
-        $_SESSION["err_Passwd"] = "<p>! Las Contraseñas no coinciden !</p>";
-    } 
-} else {
-    $_SESSION["passwd"] = $passwd;
-    $_SESSION["err_Passwd"] = "";
-}
-
-if ($correct) {
+if (datosCorrectos($nombre, $email, $passwd, $passwd_R)) {
     try {
         $sentencia = $conn->prepare("INSERT INTO usuarios(email, nombre, passwd) VALUE (:email, :nombre, :passwd)");
 
@@ -65,26 +19,77 @@ if ($correct) {
         $sentencia->execute();
 
         session_destroy();
-        $insertado = true;
-    } catch (PDOException $ex) {
-        $_SESSION["err_Try"] = "<p> Operación Fallida </p>";
-    }
-
-    $conn = null;
-
-    if ($insertado) {
         session_start();
         $_SESSION["correcto"] = "<p> Cuenta Creada! Logueate</p>";
 
+        $conn = null;
         header("Location: ../Login/Login.php");
         exit;
+    } catch (PDOException $ex) {
+        $_SESSION["err_Try"] = "<p> Operación Fallida </p>";
+        header("Location: Registro.php");
+        exit;
     }
-    
-    header("Location: Registro.php");
-    exit;
 } else {
     header("Location: Registro.php");
     exit;
+}
+
+function datosCorrectos($nombre, $email, $passwd, $passwd_R) {
+    $correcto = true;
+    $err = "";
+
+    if (!preg_match("/^[a-zA-Z-' ]*$/", $nombre) || empty($nombre)) {
+        $correcto = false;
+        $_SESSION["nombre"] = "";
+
+        if (empty($nombre)) {
+            $err = "El Campo esta Vacio";
+        } elseif (!preg_match("/^[a-zA-Z-' ]*$/", $nombre)) {
+            $err = "Solo se permiten letras, espacios y el caracter (')";
+        }
+
+        $_SESSION["err_Nombre"] = "<p>! " . $err . " !</p>";
+    } else {
+        $_SESSION["nombre"] = $nombre;
+        $_SESSION["err_Nombre"] = "";
+    }
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL) || empty($email) || !emailValido($email)) {
+        $correcto = false;
+        $_SESSION["email"] = "";
+
+        if (empty($email)) {
+            $err = "El Campo esta Vacio";
+        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $err = "No Cumple con un formato correcto de Correo";
+        }  elseif (!emailValido($email)) {
+            $err = "El Correo Introducido ya Existe";
+        }
+
+        $_SESSION["err_Email"] = "<p>! " . $err . " !</p>";
+    } else {
+        $_SESSION["email"] = $email;
+        $_SESSION["err_Email"] = "";
+    }
+
+    if ($passwd !== $passwd_R || empty($passwd)) { 
+        $correcto = false; 
+        $_SESSION["passwd"] = "";
+
+        if (empty($passwd)) {
+            $err = "El Campo esta Vacio";
+        } elseif ($passwd !== $passwd_R) {
+            $err = "Las Contraseñas no coinciden";
+        } 
+
+        $_SESSION["err_Passwd"] = "<p>! " . $err . " !</p>";
+    } else {
+        $_SESSION["passwd"] = $passwd;
+        $_SESSION["err_Passwd"] = "";
+    }
+
+    return $correcto;
 }
 
 function emailValido($mail) {
@@ -93,15 +98,13 @@ function emailValido($mail) {
     try {
         $sentencia = $conn->prepare("SELECT email FROM usuarios WHERE email like(:email)");
         $sentencia->bindParam(":email", $mail);
-
         $sentencia->execute();
 
         $result = $sentencia->fetch(PDO::FETCH_ASSOC);
+        $conn = null;
     } catch (PDOException $ex) {
         $_SESSION["err_Try"] = "<p> Operación Fallida </p>";
     }
-
-    $conn = null;
 
     return $result === false;
 }

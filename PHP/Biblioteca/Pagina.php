@@ -1,6 +1,6 @@
 <?php
 session_start(); 
-if (!isset($_SESSION["nombreLogin"])) {
+if (!isset($_SESSION["emailLogin"])) {
     header("Location: ../Login/Login.php");
     exit;
 }
@@ -22,9 +22,7 @@ if (!isset($_SESSION["nombreLogin"])) {
                     <h1 class="welcome-title">¡Bienvenido!</h1>
                     <p class="welcome-subtitle">Has iniciado sesión exitosamente</p>
                     <p class="welcome-user"><?php echo $_SESSION["nombreLogin"]; ?></p>
-                    <p class="welcome-message">
-                        Gracias por usar nuestra plataforma. Aquí podrás acceder a todas las funcionalidades disponibles.
-                    </p>
+                    <a href="nuevoJuego.php" class="btn-juego">Añadir Juego</a>
                     <a href="../LogOut.php" class="btn-logout">Cerrar Sesión</a>
                 </div>
             </div>
