@@ -52,15 +52,15 @@ if (!isset($_SESSION["emailLogin"])) {
                 </div>
 
                 <div class="campo">
-                    <input type="text" name="url" placeholder="URL" maxlength="500" value="<?php echo (isset($_SESSION["url"]) ? $_SESSION["url"] : "") ?>">
+                    <input type="text" name="enlace" placeholder="Enlace" maxlength="500" value="<?php echo (isset($_SESSION["enlace"]) ? $_SESSION["enlace"] : "") ?>">
                     <br/>
-                    <?php echo (isset($_SESSION["err_Url"]) ? $_SESSION["err_Url"] : "") ?>
+                    <?php echo (isset($_SESSION["err_enlace"]) ? $_SESSION["err_enlace"] : "") ?>
                 </div>
 
                 <div class="campo">
-                    <input type="number" name="año" placeholder="Año" min="1950" value="<?php echo (isset($_SESSION["año"]) ? $_SESSION["año"] : "") ?>">
+                    <input type="number" name="ano" placeholder="Año" min="1950" value="<?php echo (isset($_SESSION["ano"]) ? $_SESSION["ano"] : "") ?>">
                     <br/>
-                    <?php echo (isset($_SESSION["err_Año"]) ? $_SESSION["err_Año"] : "") ?>
+                    <?php echo (isset($_SESSION["err_Año"]) ? $_SESSION["err_ano"] : "") ?>
                 </div>
 
                 <input type="submit">

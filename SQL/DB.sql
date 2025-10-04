@@ -14,8 +14,8 @@ CREATE TABLE juegos (
     autor varchar(100),
     caratula varchar(255),
     categoria varchar(50),
-    url varchar(500),
-    año smallint,
+    enlace varchar(500),
+    ano smallint,
     propietario varchar(255),
 
     constraint jue_pro_fk foreign key (propietario) references usuarios(email)
