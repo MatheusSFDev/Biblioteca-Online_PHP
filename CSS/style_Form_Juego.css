@@ -49,6 +49,7 @@ form {
     position: relative;
 }
 
+.campo textarea,
 .campo input[type="text"],
 .campo input[type="password"],
 .campo input[type="number"] {
@@ -63,12 +64,14 @@ form {
     transition: all 0.3s ease;
 }
 
+.campo textarea::placeholder,
 .campo input[type="text"]::placeholder,
 .campo input[type="password"]::placeholder,
 .campo input[type="number"]::placeholder {
     color: #a0aec0;
 }
 
+.campo textarea:focus,
 .campo input[type="text"]:focus,
 .campo input[type="password"]:focus,
 .campo input[type="number"]:focus {
@@ -77,6 +80,7 @@ form {
     box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.1);
 }
 
+.campo textarea::before,
 .campo input[type="text"]::before,
 .campo input[type="password"]::before,
 .campo input[type="number"]::before {
@@ -174,8 +178,10 @@ button:active {
         font-size: 24px;
     }
     
+    .campo textarea,
     .campo input[type="text"],
-    .campo input[type="password"] {
+    .campo input[type="password"],
+    .campo input[type="number"] {
         padding: 12px 12px 12px 40px;
         font-size: 14px;
     }

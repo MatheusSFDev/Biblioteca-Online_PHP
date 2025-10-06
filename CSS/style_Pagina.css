@@ -1,3 +1,5 @@
+/* main_content_styles.css */
+
 * {
     margin: 0;
     padding: 0;
@@ -5,148 +7,119 @@
 }
 
 body {
+    min-height: 100vh;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding-bottom: 40px;
 }
 
-.dashboard-container {
-    min-height: 100vh;
+/* Contenedor de juegos */
+#juegos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 0 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+#juegos a {
+    text-decoration: none;
+    flex: 0 0 calc(25% - 23px);
+    min-width: 250px;
+}
+
+/* Tarjeta de juego */
+.juego {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 15px;
+    height: 350px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    justify-content: flex-end;
+    padding: 20px;
 }
 
-.main-content {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 20px;
+.juego::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, 
+        rgba(0, 0, 0, 0) 0%, 
+        rgba(0, 0, 0, 0.3) 50%, 
+        rgba(0, 0, 0, 0.8) 100%);
+    transition: all 0.3s ease;
 }
 
-.welcome-card {
-    background-color: #2d3748;
-    padding: 60px 80px;
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    max-width: 600px;
-    width: 100%;
+.juego:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
 }
 
-.welcome-title {
+.juego:hover::before {
+    background: linear-gradient(to bottom, 
+        rgba(0, 0, 0, 0.1) 0%, 
+        rgba(0, 0, 0, 0.4) 50%, 
+        rgba(0, 0, 0, 0.9) 100%);
+}
+
+.titulo {
     color: #ffffff;
-    font-size: 42px;
+    font-size: 22px;
     font-weight: 700;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
-.welcome-subtitle {
-    color: #a0aec0;
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-.welcome-user {
-    color: #48bb78;
-    font-size: 32px;
-    font-weight: 600;
-    margin-bottom: 40px;
-    margin-top: 20px;
-}
-
-.welcome-message {
+.autor {
     color: #cbd5e0;
     font-size: 16px;
-    line-height: 1.6;
-    margin-bottom: 40px;
+    font-weight: 400;
+    position: relative;
+    z-index: 1;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
 
-.btn-logout {
-    padding: 15px 40px;
-    background: linear-gradient(90deg, #f56565, #e53e3e);
-    border: none;
-    border-radius: 10px;
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    text-decoration: none;
-    display: inline-block;
+/* Responsive para el contenido */
+@media (max-width: 1200px) {
+    #juegos a {
+        flex: 0 0 calc(33.333% - 20px);
+    }
 }
 
-.btn-logout:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(245, 101, 101, 0.4);
-    background: linear-gradient(90deg, #e53e3e, #c53030);
-}
-
-.btn-logout:active {
-    transform: translateY(0);
-}
-
-.btn-juego {
-    padding: 15px 40px;
-    background: linear-gradient(90deg, #76f565, #52e53e);
-    border: none;
-    border-radius: 10px;
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.btn-juego:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(106, 245, 101, 0.4);
-    background: linear-gradient(90deg, #52e53e, #30c538);
-}
-
-.btn-juego:active {
-    transform: translateY(0);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .welcome-card {
-        padding: 40px 30px;
+@media (max-width: 900px) {
+    #juegos a {
+        flex: 0 0 calc(50% - 15px);
     }
     
-    .welcome-title {
-        font-size: 32px;
-    }
-    
-    .welcome-user {
-        font-size: 24px;
-    }
-    
-    .welcome-message {
-        font-size: 14px;
-    }
-    
-    .btn-logout {
-        padding: 12px 30px;
-        font-size: 14px;
+    #juegos {
+        padding: 0 25px;
     }
 }
 
-@media (max-width: 480px) {
-    .welcome-card {
-        padding: 30px 20px;
+@media (max-width: 600px) {
+    #juegos a {
+        flex: 0 0 100%;
+        min-width: unset;
+    }
+
+    #juegos {
+        padding: 0 20px;
+        gap: 20px;
     }
     
-    .welcome-title {
-        font-size: 28px;
-    }
-    
-    .welcome-user {
-        font-size: 20px;
+    .juego {
+        height: 300px;
     }
 }

@@ -1,10 +1,5 @@
 <?php
-session_start(); 
-if (!isset($_SESSION["emailLogin"])) {
-    header("Location: ../Login/Login.php");
-    exit;
-}
-require 'leerJuegos.php';
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -12,8 +7,7 @@ require 'leerJuegos.php';
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Bienvenido | LevelUp Library</title>
-        <link rel="stylesheet" href="../../CSS/style_Pagina.css">
+        <title>Juego</title>
         <link rel="stylesheet" href="../../CSS/style_Header.css">
     </head>
 
@@ -31,17 +25,6 @@ require 'leerJuegos.php';
             <a href="../LogOut.php" class="btn-logout">Cerrar Sesión</a>
         </header>
 
-        <div id="juegos">
-        <?php
-            foreach ($result as $juego) {
-                echo "<a href=\"Juego.php?id=" . $juego["id"] . "\">";
-                    echo "<div class=\"juego\" style=\"background-image: url(" . $juego["caratula"] . ");\">";
-                        echo "<h1 class=\"titulo\">" . $juego["titulo"] . "</h1>";
-                        echo "<h2 class=\"autor\">" . $juego["autor"] . "</h2>";
-                    echo "</div>";
-                echo "</a>";
-            }
-        ?>
-        </div>
+        Por Hacer...
     </body>
 </html>
