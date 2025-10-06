@@ -18,7 +18,7 @@ if (datosValidos($titulo, $autor, $categoria, $enlace, $ano)) {
 }
 
 if (datosValidos($titulo, $autor, $categoria, $enlace, $ano) && $caratula != "false") {
-    require '../Conexion_DB.php';
+    require '../../Conexion_DB.php';
 
     try {
         $sentencia = $conn->prepare("INSERT INTO juegos(titulo, descripcion, autor, caratula, categoria, enlace, ano, propietario) VALUES (:titulo, :descripcion, :autor, :caratula, :categoria, :enlace, :ano, :propietario)");
@@ -43,7 +43,7 @@ if (datosValidos($titulo, $autor, $categoria, $enlace, $ano) && $caratula != "fa
         $_SESSION["nombreLogin"] = $nombreLogin;
         $_SESSION["emailLogin"] = $emailLogin;
 
-        header("Location: Pagina.php");
+        header("Location: ../Pagina.php");
         exit;
     } catch (PDOException $ex) {
         $_SESSION["err_Try"] = "<p> Operación Fallida </p>";
@@ -136,7 +136,7 @@ function guardarFoto() {
             return "false";
         }
     } else {
-        return "../../Imgs/Caratula_Base.png";
+        return "../../Imgs/Caratulas/Caratula_Base.png";
     }
 }
 ?>

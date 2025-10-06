@@ -1,5 +1,15 @@
 <?php
 session_start();
+if (!isset($_SESSION["emailLogin"])) {
+    header("Location: ../Login/Login.php");
+    exit;
+}
+
+require 'leerJuegos_DB.php';
+if ($result === false) {
+    header("Location: Pagina.php");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -7,7 +17,7 @@ session_start();
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Juego</title>
+        <title>Juego | LevelUp Library</title>
         <link rel="stylesheet" href="../../CSS/style_Header.css">
     </head>
 
@@ -21,10 +31,31 @@ session_start();
                 </svg>
             </a>
             <p class="welcome-user">Hola <?php echo $_SESSION["nombreLogin"]; ?>!</p>
-            <a href="nuevoJuego.php" class="btn-juego">Añadir Juego</a>
+            <a href="Crear/nuevoJuego.php" class="btn-juego">Añadir Juego</a>
             <a href="../LogOut.php" class="btn-logout">Cerrar Sesión</a>
         </header>
 
-        Por Hacer...
+        <h1> <?php echo $result["titulo"]; ?> </h1>
+        <h2> <?php echo $result["autor"]; ?> </h2>
+
+        <p> <?php echo $result["descripcion"]; ?> </p>
+        
+        <p> <?php echo $result["categoria"]; ?> </p>
+        <p> <?php echo $result["ano"]; ?> </p>
+
+        <a href="<?php echo $result["enlace"]; ?>"> <?php echo $result["enlace"]; ?> </a>
+
+        <br>
+        <img src="<?php echo $result["caratula"]; ?>">
+
+        <br>
+
+        <?php
+        if ($_SESSION["emailLogin"] === $result["propietario"]) {
+            echo "<a href=\"Modificar/modificarJuego.php?id=" . $result["id"] . "\">Editar</a>";
+            echo "<br>";
+            echo "<a href=\"Eliminar/eliminarJuego.php?id=" . $result["id"] . "\">BORRAR</a>";
+        }
+        ?>
     </body>
 </html>

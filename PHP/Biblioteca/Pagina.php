@@ -4,7 +4,7 @@ if (!isset($_SESSION["emailLogin"])) {
     header("Location: ../Login/Login.php");
     exit;
 }
-require 'leerJuegos.php';
+require 'leerJuegos_DB.php';
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +27,7 @@ require 'leerJuegos.php';
                 </svg>
             </a>
             <p class="welcome-user">Hola <?php echo $_SESSION["nombreLogin"]; ?>!</p>
-            <a href="nuevoJuego.php" class="btn-juego">Añadir Juego</a>
+            <a href="Crear/nuevoJuego.php" class="btn-juego">Añadir Juego</a>
             <a href="../LogOut.php" class="btn-logout">Cerrar Sesión</a>
         </header>
 
