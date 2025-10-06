@@ -1,6 +1,4 @@
-<?php 
-require '../Conexion_DB.php';
-
+<?php
 if (isset($_GET["id"])) {
     try {
         $sentencia = $conn->prepare("SELECT * FROM juegos WHERE id like(:id)");
@@ -21,5 +19,4 @@ if (isset($_GET["id"])) {
         echo "Operación Fallida";
     }
 }
-
 ?>

@@ -5,6 +5,7 @@ if (!isset($_SESSION["emailLogin"])) {
     exit;
 }
 
+require '../Conexion_DB.php';
 require 'leerJuegos_DB.php';
 if ($result === false) {
     header("Location: Pagina.php");

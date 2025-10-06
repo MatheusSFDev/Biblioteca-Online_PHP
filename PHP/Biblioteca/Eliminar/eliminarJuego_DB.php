@@ -1,7 +1,7 @@
 <?php
 session_start();
-require '../leerJuegos_DB.php';
 require '../../Conexion_DB.php';
+require '../leerJuegos_DB.php';
 
 if ($result === false) {
     header("Location: ../Pagina.php");

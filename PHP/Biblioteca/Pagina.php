@@ -4,6 +4,7 @@ if (!isset($_SESSION["emailLogin"])) {
     header("Location: ../Login/Login.php");
     exit;
 }
+require '../Conexion_DB.php';
 require 'leerJuegos_DB.php';
 ?>
 
