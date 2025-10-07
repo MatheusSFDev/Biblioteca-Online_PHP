@@ -1,0 +1,203 @@
+/* style_Eliminar.css - Página de confirmación de eliminación */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Contenedor principal */
+.eliminar-container {
+    background-color: #2d3748;
+    padding: 50px 45px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    width: 500px;
+    max-width: 90%;
+    text-align: center;
+}
+
+/* Icono de advertencia */
+.icono-advertencia {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 25px;
+    background: linear-gradient(135deg, #fc8181, #f56565);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(252, 129, 129, 0.3);
+    animation: pulse 2s infinite;
+}
+
+.icono-advertencia::before {
+    content: '!';
+    color: #ffffff;
+    font-size: 48px;
+    font-weight: bold;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 10px 30px rgba(252, 129, 129, 0.3);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 15px 40px rgba(252, 129, 129, 0.5);
+    }
+}
+
+/* Título */
+.eliminar-container h1 {
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* Mensaje */
+.eliminar-mensaje {
+    color: #cbd5e0;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 35px;
+}
+
+.eliminar-mensaje strong {
+    color: #fc8181;
+    font-weight: 600;
+}
+
+/* Línea decorativa */
+.linea-divisor {
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #fc8181, #f56565);
+    margin: 20px auto 30px;
+    border-radius: 2px;
+}
+
+/* Contenedor de botones */
+.botones-accion {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+/* Botones */
+.btn {
+    flex: 1;
+    padding: 16px 30px;
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-cancelar {
+    background: linear-gradient(90deg, #4a5568, #2d3748);
+    border: 2px solid #cbd5e0;
+}
+
+.btn-cancelar:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(74, 85, 104, 0.4);
+    background: linear-gradient(90deg, #556178, #384152);
+    border-color: #ffffff;
+}
+
+.btn-confirmar {
+    background: linear-gradient(90deg, #fc8181, #f56565);
+}
+
+.btn-confirmar:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(252, 129, 129, 0.5);
+    background: linear-gradient(90deg, #f56565, #e53e3e);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/* Advertencia adicional */
+.advertencia-texto {
+    background-color: rgba(252, 129, 129, 0.1);
+    border-left: 4px solid #fc8181;
+    padding: 15px 20px;
+    margin-top: 25px;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.advertencia-texto p {
+    color: #fc8181;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .eliminar-container {
+        padding: 40px 30px;
+        width: 95%;
+    }
+    
+    .eliminar-container h1 {
+        font-size: 24px;
+    }
+    
+    .eliminar-mensaje {
+        font-size: 15px;
+    }
+    
+    .botones-accion {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+    
+    .icono-advertencia {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .icono-advertencia::before {
+        font-size: 42px;
+    }
+}
+
+@media (max-width: 400px) {
+    .eliminar-container {
+        padding: 30px 20px;
+    }
+    
+    .btn {
+        padding: 14px 25px;
+        font-size: 15px;
+    }
+}

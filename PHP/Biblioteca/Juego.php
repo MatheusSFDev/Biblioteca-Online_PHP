@@ -20,6 +20,7 @@ if ($result === false) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Juego | LevelUp Library</title>
         <link rel="stylesheet" href="../../CSS/style_Header.css">
+        <link rel="stylesheet" href="../../CSS/style_Juego.css">
     </head>
 
     <body>
@@ -36,27 +37,53 @@ if ($result === false) {
             <a href="../LogOut.php" class="btn-logout">Cerrar Sesión</a>
         </header>
 
-        <h1> <?php echo $result["titulo"]; ?> </h1>
-        <h2> <?php echo $result["autor"]; ?> </h2>
+        <div class="juego-detalle">
+            <div class="juego-header">
+                <h1><?php echo $result["titulo"]; ?></h1>
+                <h2>Por <?php echo $result["autor"]; ?></h2>
+            </div>
 
-        <p> <?php echo $result["descripcion"]; ?> </p>
-        
-        <p> <?php echo $result["categoria"]; ?> </p>
-        <p> <?php echo $result["ano"]; ?> </p>
+            <div class="juego-contenido">
+                <div class="juego-info">
+                    <h3>Descripción</h3>
+                    <p class="descripcion"><?php echo $result["descripcion"]; ?></p>
 
-        <a href="<?php echo $result["enlace"]; ?>"> <?php echo $result["enlace"]; ?> </a>
+                    <div class="juego-detalles">
+                        <div class="detalle-item">
+                            <span class="detalle-label">Categoría:</span>
+                            <span class="detalle-valor"><?php echo $result["categoria"]; ?></span>
+                        </div>
+                        <div class="detalle-item">
+                            <span class="detalle-label">Año:</span>
+                            <span class="detalle-valor"><?php echo $result["ano"]; ?></span>
+                        </div>
+                        <div class="detalle-item">
+                            <span class="detalle-label">Enlace:</span>
+                            <span class="detalle-valor">
+                                <a href="<?php echo $result["enlace"]; ?>" target="_blank">
+                                    Visitar sitio web
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
 
-        <br>
-        <img src="<?php echo $result["caratula"]; ?>">
+                <div class="juego-caratula">
+                    <h3>Carátula</h3>
+                    <img src="<?php echo $result["caratula"]; ?>" alt="<?php echo $result["titulo"]; ?>" class="caratula-imagen">
+                </div>
+            </div>
 
-        <br>
-
-        <?php
-        if ($_SESSION["emailLogin"] === $result["propietario"]) {
-            echo "<a href=\"Modificar/modificarJuego.php?id=" . $result["id"] . "\">Editar</a>";
-            echo "<br>";
-            echo "<a href=\"Eliminar/eliminarJuego.php?id=" . $result["id"] . "\">BORRAR</a>";
-        }
-        ?>
+            <?php if ($_SESSION["emailLogin"] === $result["propietario"]): ?>
+            <div class="juego-acciones">
+                <a href="Modificar/modificarJuego.php?id=<?php echo $result["id"]; ?>" class="btn-accion btn-editar">
+                    ✏️ Editar Juego
+                </a>
+                <a href="Eliminar/eliminarJuego.php?id=<?php echo $result["id"]; ?>" class="btn-accion btn-eliminar">
+                    🗑️ Eliminar
+                </a>
+            </div>
+            <?php endif; ?>
+        </div>
     </body>
 </html>

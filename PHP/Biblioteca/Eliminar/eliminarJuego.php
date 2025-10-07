@@ -19,16 +19,36 @@ if ($_SESSION["emailLogin"] !== $result["propietario"]) {
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eliminar | LevelUp Library</title>
-</head>
-<body>
-    Estas Seguro de Borrarlo?
-    <?php
-    echo "<a href=\"../Juego.php?id=" . $_GET["id"] . "\">Cancelar</a>";
-    echo "<a href=\"eliminarJuego_DB.php?id=" . $_GET["id"] . "\">BORRAR</a>";
-    ?>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Eliminar | LevelUp Library</title>
+        <link rel="stylesheet" href="../../../CSS/style_Eliminar_Juego.css">
+    </head>
+
+    <body>
+        <div class="eliminar-container">
+            <div class="icono-advertencia"></div>
+            <h1>¿Estás Seguro?</h1>
+            <div class="linea-divisor"></div>
+            
+            <p class="eliminar-mensaje">
+                Esta acción <strong>no se puede deshacer</strong>. 
+                El juego será eliminado permanentemente de la biblioteca.
+            </p>
+
+            <div class="advertencia-texto">
+                <p>⚠️ Se eliminarán todos los datos asociados a este juego.</p>
+            </div>
+
+            <div class="botones-accion">
+                <a href="../Juego.php?id=<?php echo $_GET["id"]; ?>" class="btn btn-cancelar">
+                    ← Cancelar
+                </a>
+                <a href="eliminarJuego_DB.php?id=<?php echo $_GET["id"]; ?>" class="btn btn-confirmar">
+                    🗑️ Confirmar Eliminación
+                </a>
+            </div>
+        </div>
+    </body>
 </html>
