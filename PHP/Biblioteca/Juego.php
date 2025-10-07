@@ -53,10 +53,15 @@ if ($result === false) {
                             <span class="detalle-label">Categoría:</span>
                             <span class="detalle-valor"><?php echo $result["categoria"]; ?></span>
                         </div>
+
+                        <?php if ($result["ano"] != 0): ?>
                         <div class="detalle-item">
                             <span class="detalle-label">Año:</span>
                             <span class="detalle-valor"><?php echo $result["ano"]; ?></span>
                         </div>
+                        <?php endif; ?>
+
+                        <?php if ($result["enlace"] != ""): ?>
                         <div class="detalle-item">
                             <span class="detalle-label">Enlace:</span>
                             <span class="detalle-valor">
@@ -65,6 +70,7 @@ if ($result === false) {
                                 </a>
                             </span>
                         </div>
+                        <?php endif; ?>
                     </div>
                 </div>
 

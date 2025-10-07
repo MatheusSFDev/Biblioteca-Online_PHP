@@ -17,12 +17,12 @@ if ($_SESSION["emailLogin"] !== $result["propietario"]) {
     exit;
 }
 
-$_SESSION["titulo"] = $result["titulo"];
-$_SESSION["descripcion"] = $result["descripcion"];
-$_SESSION["autor"] = $result["autor"];
-$_SESSION["categoria"] = $result["categoria"];
-$_SESSION["enlace"] = $result["enlace"];
-$_SESSION["ano"] = $result["ano"] != 0 ? $result["ano"] : "";
+if (!isset($_SESSION["titulo"])) $_SESSION["titulo"] = $result["titulo"];
+if (!isset($_SESSION["descripcion"])) $_SESSION["descripcion"] = $result["descripcion"];
+if (!isset($_SESSION["autor"])) $_SESSION["autor"] = $result["autor"];
+if (!isset($_SESSION["categoria"])) $_SESSION["categoria"] = $result["categoria"];
+if (!isset($_SESSION["enlace"])) $_SESSION["enlace"] = $result["enlace"];
+if (!isset($_SESSION["ano"])) $_SESSION["ano"] = $result["ano"] != 0 ? $result["ano"] : "";
 $ruta = $result["caratula"];
 $propietario = $result["propietario"];
 
