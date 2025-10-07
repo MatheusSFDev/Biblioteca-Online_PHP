@@ -5,12 +5,28 @@ if (!isset($_SESSION["emailLogin"])) {
     exit;
 }
 
-$_SESSION["titulo"] = "";
-$_SESSION["descripcion"] = "";
-$_SESSION["autor"] = "";
-$_SESSION["categoria"] = "";
-$_SESSION["enlace"] = "";
-$_SESSION["ano"] = "";
+require '../../Conexion_DB.php';
+require '../leerJuegos_DB.php';
+
+if ($result === false) {
+    header("Location: ../Pagina.php");
+    exit;
+}
+if ($_SESSION["emailLogin"] !== $result["propietario"]) {
+    header("Location: ../Pagina.php");
+    exit;
+}
+
+$_SESSION["titulo"] = $result["titulo"];
+$_SESSION["descripcion"] = $result["descripcion"];
+$_SESSION["autor"] = $result["autor"];
+$_SESSION["categoria"] = $result["categoria"];
+$_SESSION["enlace"] = $result["enlace"];
+$_SESSION["ano"] = $result["ano"] != 0 ? $result["ano"] : "";
+$ruta = $result["caratula"];
+$propietario = $result["propietario"];
+
+$conn = null;
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +34,7 @@ $_SESSION["ano"] = "";
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Añadir Juego | LevelUp Library</title>
+        <title>Editar Juego | LevelUp Library</title>
         <link rel="stylesheet" href="../../../CSS/style_Form_Juego.css">
         <link rel="stylesheet" href="../../../CSS/style_Header.css">
     </head>
@@ -33,16 +49,16 @@ $_SESSION["ano"] = "";
                 </svg>
             </a>
             <p class="welcome-user">Hola <?php echo $_SESSION["nombreLogin"]; ?>!</p>
-            <a href="nuevoJuego.php" class="btn-juego">Añadir Juego</a>
+            <a href="../Crear/nuevoJuego.php" class="btn-juego">Añadir Juego</a>
             <a href="../../LogOut.php" class="btn-logout">Cerrar Sesión</a>
         </header>
 
         <div id="caja">
-            <h1>Añadir Nuevo Juego</h1>
+            <h1>Editar Juego</h1>
             <div id="linea"></div>
             <?php echo (isset($_SESSION["err_Try"]) ? $_SESSION["err_Try"] : ""); $_SESSION["err_Try"] = ""; ?>
 
-            <form action="nuevoJuego_DB.php" method="post" enctype="multipart/form-data">
+            <form action="modificarJuego_DB.php" method="post" enctype="multipart/form-data">
                 <div class="campo">
                     <input type="text" name="titulo" placeholder="Titulo" maxlength="200" value="<?php echo (isset($_SESSION["titulo"]) ? $_SESSION["titulo"] : "") ?>">
                     <br/>
@@ -84,6 +100,9 @@ $_SESSION["ano"] = "";
                     <?php echo (isset($_SESSION["err_Año"]) ? $_SESSION["err_ano"] : "") ?>
                 </div>
 
+                <input type="hidden" name="id" value="<?php echo $_GET["id"]; ?>">
+                <input type="hidden" name="ruta" value="<?php echo $ruta; ?>">
+                <input type="hidden" name="propietario" value="<?php echo $propietario; ?>">
                 <input type="submit">
             </form>
         </div>

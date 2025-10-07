@@ -22,6 +22,10 @@ try {
     echo "Operación Fallida";
 }
 
+if ($result["caratula"] != "../../Imgs/Caratulas/Caratula_Base.png") {
+    unlink("../" . $result["caratula"]);
+}
+
 header("Location: ../Pagina.php");
 exit;
 ?>

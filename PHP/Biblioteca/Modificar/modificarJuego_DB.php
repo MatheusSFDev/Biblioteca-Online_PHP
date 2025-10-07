@@ -1,13 +1,18 @@
 <?php
 session_start();
 
+if ($_SESSION["emailLogin"] !== $_POST["propietario"]) {
+    header("Location: ../Pagina.php");
+    exit;
+}
+
 $titulo = $_POST["titulo"];
 $descripcion = $_POST["descripcion"];
 $autor = $_POST["autor"];
 $categoria = $_POST["categoria"];
 $enlace = $_POST["enlace"];
 $ano = $_POST["ano"];
-$propietario = $_SESSION["emailLogin"];
+$id = $_POST["id"];
 
 $_SESSION["descripcion"] = $descripcion;
 
@@ -21,7 +26,15 @@ if (datosValidos($titulo, $autor, $categoria, $enlace, $ano) && $caratula != "fa
     require '../../Conexion_DB.php';
 
     try {
-        $sentencia = $conn->prepare("INSERT INTO juegos(titulo, descripcion, autor, caratula, categoria, enlace, ano, propietario) VALUES (:titulo, :descripcion, :autor, :caratula, :categoria, :enlace, :ano, :propietario)");
+        $sentencia = $conn->prepare("UPDATE juegos SET 
+                                                    titulo = :titulo,
+                                                    descripcion = :descripcion,
+                                                    autor = :autor,
+                                                    caratula = :caratula,
+                                                    categoria = :categoria,
+                                                    enlace = :enlace,
+                                                    ano = :ano
+                                    WHERE id = :id ");
 
         $sentencia->bindParam(":titulo", $titulo);
         $sentencia->bindParam(":descripcion", $descripcion);
@@ -30,7 +43,7 @@ if (datosValidos($titulo, $autor, $categoria, $enlace, $ano) && $caratula != "fa
         $sentencia->bindParam(":categoria", $categoria);
         $sentencia->bindParam(":enlace", $enlace);
         $sentencia->bindParam(":ano", $ano);
-        $sentencia->bindParam(":propietario", $propietario);
+        $sentencia->bindParam(":id", $id);
 
         $sentencia->execute();
 
@@ -43,15 +56,15 @@ if (datosValidos($titulo, $autor, $categoria, $enlace, $ano) && $caratula != "fa
         $_SESSION["nombreLogin"] = $nombreLogin;
         $_SESSION["emailLogin"] = $emailLogin;
 
-        header("Location: ../Pagina.php");
+        header("Location: ../Juego.php?id=" . $id);
         exit;
     } catch (PDOException $ex) {
-        $_SESSION["err_Try"] = "<p> Operación Fallida </p>";
-        header("Location: nuevoJuego.php");
+        $_SESSION["err_Try"] = "<p>Operación Fallida</p>";
+        header("Location: modificarJuego.php?id=" . $id);
         exit;
     }
 } else {
-    header("Location: nuevoJuego.php");
+    header("Location: modificarJuego.php?id=" . $id);
     exit;
 }
 
@@ -130,13 +143,18 @@ function guardarFoto() {
         
         if (move_uploaded_file($_FILES["caratula"]["tmp_name"], $rutaGuardado)) {
             $_SESSION["err_Caratula"] = "";
+
+            if ($_POST["ruta"] != "../../Imgs/Caratulas/Caratula_Base.png") {
+                unlink("../" . $_POST["ruta"]);
+            }
+            
             return $rutaBiblioteca;
         } else {
             $_SESSION["err_Caratula"] = "<p>! La Foto no se pudo Guardar !</p>";
             return "false";
         }
     } else {
-        return "../../Imgs/Caratulas/Caratula_Base.png";
+        return $_POST["ruta"];
     }
 }
 ?>
