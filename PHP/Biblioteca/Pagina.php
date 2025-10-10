@@ -16,6 +16,35 @@ require 'leerJuegos_DB.php';
         <title>Bienvenido | LevelUp Library</title>
         <link rel="stylesheet" href="../../CSS/style_Pagina.css">
         <link rel="stylesheet" href="../../CSS/style_Header.css">
+
+        <script>
+            function barraBusqueda(busca) {
+                let xmlhttp = new XMLHttpRequest();
+
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        let res = JSON.parse(this.responseText);
+
+                        for (let x = 0 ; x < res.todos.length ; x++) {
+                            document.getElementById(res.todos[x]).style["display"] = "none";
+                        }
+
+                        if (res.buscados.length !== 0) {
+                            document.getElementById("noJuego").style["display"] = "none";
+                            for (let x = 0 ; x < res.buscados.length ; x++) {
+                                document.getElementById(res.buscados[x]).style["display"] = "inline";
+                            }
+                        } else {
+                            document.getElementById("noJuego").style["display"] = "inline";
+                        }
+                        
+                    }
+                }
+
+                xmlhttp.open("GET", "buscarJuegos_DB.php?b=" + encodeURIComponent(busca) + "%", true);
+                xmlhttp.send();
+            }
+        </script>
     </head>
 
     <body>
@@ -28,6 +57,11 @@ require 'leerJuegos_DB.php';
                 </svg>
             </a>
             <p class="welcome-user">Hola <?php echo $_SESSION["nombreLogin"]; ?>!</p>
+
+            <form>
+                <input type="text" onkeyup="barraBusqueda(this.value)" placeholder="buscar">
+            </form>
+
             <a href="Crear/nuevoJuego.php" class="btn-juego">Añadir Juego</a>
             <a href="../LogOut.php" class="btn-logout">Cerrar Sesión</a>
         </header>
@@ -35,14 +69,18 @@ require 'leerJuegos_DB.php';
         <div id="juegos">
         <?php
             foreach ($result as $juego) {
-                echo "<a href=\"Juego.php?id=" . $juego["id"] . "\">";
+                echo "<a id=\"" . $juego["id"] . "\" href=\"Juego.php?id=" . $juego["id"] . "\">";
                     echo "<div class=\"juego\" style=\"background-image: url(" . $juego["caratula"] . ");\">";
                         echo "<h1 class=\"titulo\">" . $juego["titulo"] . "</h1>";
                         echo "<h2 class=\"autor\">" . $juego["autor"] . "</h2>";
                     echo "</div>";
                 echo "</a>";
             }
+
+            $conn = false;
         ?>
         </div>
+
+        <p id="noJuego" style="display: none;">Ningún Juego Encontrado</p>
     </body>
 </html>
