@@ -20,27 +20,27 @@ session_start();
                         let verificaciones = JSON.parse(this.responseText);
                         
                         if (verificaciones["minCaract"]) {
-                            document.getElementById("minCaract").style["color"] = "green";
+                            document.getElementById("minCaract").style["color"] = "#48bb78";
                         } else {
-                            document.getElementById("minCaract").style["color"] = "red";
+                            document.getElementById("minCaract").style["color"] = "#fc8181";
                         }
 
                         if (verificaciones["mayusMins"]) {
-                            document.getElementById("mayusMins").style["color"] = "green";
+                            document.getElementById("mayusMins").style["color"] = "#48bb78";
                         } else {
-                            document.getElementById("mayusMins").style["color"] = "red";
+                            document.getElementById("mayusMins").style["color"] = "#fc8181";
                         }
 
                         if (verificaciones["numsOblig"]) {
-                            document.getElementById("numsOblig").style["color"] = "green";
+                            document.getElementById("numsOblig").style["color"] = "#48bb78";
                         } else {
-                            document.getElementById("numsOblig").style["color"] = "red";
+                            document.getElementById("numsOblig").style["color"] = "#fc8181";
                         }
 
                         if (verificaciones["espcCarac"]) {
-                            document.getElementById("espcCarac").style["color"] = "green";
+                            document.getElementById("espcCarac").style["color"] = "#48bb78";
                         } else {
-                            document.getElementById("espcCarac").style["color"] = "red";
+                            document.getElementById("espcCarac").style["color"] = "#fc8181";
                         }
                     }
                 };
@@ -76,10 +76,10 @@ session_start();
                     <?php echo (isset($_SESSION["err_Passwd"]) ? $_SESSION["err_Passwd"] : "") ?>
 
                     <ul id="condicionesPasswd">
-                        <li id="minCaract" style="color : red;">Debe tener Minimo 8 Caracteres</li>
-                        <li id="mayusMins" style="color : red;">Debe terner Mayusculas y Minusculas</li>
-                        <li id="numsOblig" style="color : red;">Debe contener Numeros</li>
-                        <li id="espcCarac" style="color : red;">Debe contener Caracteres Especiales</li>
+                        <li id="minCaract" style="color : #fc8181;">Debe tener Minimo 8 Caracteres</li>
+                        <li id="mayusMins" style="color : #fc8181;">Debe terner Mayusculas y Minusculas</li>
+                        <li id="numsOblig" style="color : #fc8181;">Debe contener Numeros</li>
+                        <li id="espcCarac" style="color : #fc8181;">Debe contener Caracteres Especiales</li>
                     </ul>
                 </div>
 

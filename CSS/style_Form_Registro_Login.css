@@ -159,6 +159,41 @@ button:active {
     transform: translateY(0);
 }
 
+#condicionesPasswd {
+    list-style-type: none;
+    padding: 0;
+    margin: 15px 0 5px 5px;
+    font-size: 13px;
+}
+
+#condicionesPasswd li {
+    margin-bottom: 9px;
+    transition: color 0.4s ease;
+    position: relative;
+    padding-left: 20px; /* Espacio para el ícono */
+}
+
+#condicionesPasswd li::before {
+    content: '✗'; /* Ícono de cruz por defecto */
+    position: absolute;
+    left: 0;
+    top: 1px;
+    font-weight: bold;
+    transition: content 0.4s ease;
+}
+
+#condicionesPasswd li[style*="color: green"] {
+    color: #48bb78 !important; /* Color de éxito */
+}
+
+#condicionesPasswd li[style*="color: green"]::before {
+    content: '✓'; /* Ícono de visto */
+}
+
+#condicionesPasswd li[style*="color: red"] {
+    color: #fc8181 !important; /* Color de error */
+}
+
 /* Responsive */
 @media (max-width: 480px) {
     #caja {

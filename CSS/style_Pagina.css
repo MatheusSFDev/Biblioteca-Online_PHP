@@ -91,6 +91,35 @@ body {
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
 
+/* --- NUEVO Y FINAL: Estilo para el mensaje "Ningún Juego Encontrado" --- */
+#noJuego {
+    display: none; /* Oculto por defecto, JS lo cambia a 'block' */
+    max-width: 500px;
+    margin: 60px auto; /* Margen superior y centrado horizontal */
+    background-color: #2d3748; /* Mismo color que las cajas de login/registro */
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    transition: opacity 0.3s ease;
+}
+
+#noJuego::before {
+    content: '🎮';
+    display: block;
+    font-size: 48px;
+    margin-bottom: 25px;
+    opacity: 0.7;
+}
+
+#noJuego p {
+    color: #cbd5e0; /* Un gris claro para suavizar el texto */
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+
 /* Responsive para el contenido */
 @media (max-width: 1200px) {
     #juegos a {

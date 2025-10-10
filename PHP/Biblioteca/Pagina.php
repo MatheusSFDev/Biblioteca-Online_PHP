@@ -35,7 +35,7 @@ require 'leerJuegos_DB.php';
                                 document.getElementById(res.buscados[x]).style["display"] = "inline";
                             }
                         } else {
-                            document.getElementById("noJuego").style["display"] = "inline";
+                            document.getElementById("noJuego").style["display"] = "block";
                         }
                         
                     }
@@ -59,7 +59,7 @@ require 'leerJuegos_DB.php';
             <p class="welcome-user">Hola <?php echo $_SESSION["nombreLogin"]; ?>!</p>
 
             <form>
-                <input type="text" onkeyup="barraBusqueda(this.value)" placeholder="buscar">
+                <input type="text" onkeyup="barraBusqueda(this.value)" placeholder="Buscar Juegos...">
             </form>
 
             <a href="Crear/nuevoJuego.php" class="btn-juego">Añadir Juego</a>
@@ -81,6 +81,8 @@ require 'leerJuegos_DB.php';
         ?>
         </div>
 
-        <p id="noJuego" style="display: none;">Ningún Juego Encontrado</p>
+        <div id="noJuego" style="display: none;">
+            <p>Ningún Juego Encontrado</p>
+        </div>
     </body>
 </html>

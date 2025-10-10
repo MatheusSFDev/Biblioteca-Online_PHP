@@ -8,23 +8,22 @@
 
 /* Header */
 header {
-    position: fixed;            /* 🔹 Fijo en la parte superior */
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100%;                /* 🔹 Ocupa todo el ancho */
+    width: 100%;
     background-color: #2d3748;
     padding: 20px 40px;
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    align-items: center; /* Centra los elementos verticalmente */
     gap: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    z-index: 1000;              /* 🔹 Encima del contenido */
+    z-index: 1000;
 }
 
-/* 🔹 Espaciado para que el contenido no quede oculto ni pegado al header */
+/* Espaciado para que el contenido no quede oculto */
 body {
-    padding-top: 120px;         /* Aumenta el margen superior */
+    padding-top: 120px;
 }
 
 /* Estilo para el enlace del SVG para transiciones */
@@ -36,13 +35,53 @@ header a:first-child:hover {
     transform: scale(1.1);
 }
 
+/* --- SOLUCIÓN CLAVE --- */
+/* El saludo empuja todo hacia la derecha, creando el grupo izquierdo */
 .welcome-user {
     color: #ffffff;
     font-size: 18px;
     font-weight: 600;
-    margin-right: auto;
+    white-space: nowrap;
+    margin-right: auto; /* Empuja el contenido hacia la derecha */
 }
 
+/* El primer botón empuja desde la izquierda, creando el grupo derecho */
+.btn-juego {
+    margin-left: auto; /* Empuja los botones hacia la derecha */
+    background: linear-gradient(90deg, #48bb78, #38b2ac);
+}
+/* --- FIN DE LA SOLUCIÓN CLAVE --- */
+
+
+/* Estilos para la barra de búsqueda (no necesita márgenes para centrarse) */
+header form {
+    flex-grow: 1;
+    max-width: 500px;
+}
+
+header form input[type="text"] {
+    width: 100%;
+    padding: 12px 20px;
+    background-color: #4a5568;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+header form input[type="text"]::placeholder {
+    color: #a0aec0;
+}
+
+header form input[type="text"]:focus {
+    background-color: #556178;
+    border-color: #48bb78;
+    box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.2);
+}
+
+/* Botones */
 .btn-juego,
 .btn-logout {
     padding: 12px 24px;
@@ -53,11 +92,7 @@ header a:first-child:hover {
     text-decoration: none;
     transition: all 0.3s ease;
     cursor: pointer;
-}
-
-.btn-juego {
-    background: linear-gradient(90deg, #48bb78, #38b2ac);
-    margin-right: 15px;
+    white-space: nowrap;
 }
 
 .btn-juego:hover {
@@ -81,38 +116,32 @@ header a:first-child:hover {
     header {
         padding: 20px 25px;
         flex-wrap: wrap;
-        gap: 15px;
+        justify-content: center;
+    }
+
+    /* Reseteamos los márgenes automáticos para que el layout responsivo funcione */
+    .welcome-user,
+    .btn-juego {
+        margin: 0;
+    }
+
+    header form {
+        width: 100%;
+        order: 3;
+        margin-top: 15px;
     }
 }
 
 @media (max-width: 600px) {
-    header {
-        padding: 15px 20px;
-        justify-content: center;
-    }
-
-    header a:first-child {
-        width: 100%;
-        text-align: center;
-        margin-bottom: 10px;
-    }
-
-    header a:first-child svg {
-        width: 40px;
-        height: 40px;
-    }
-
     .welcome-user {
         width: 100%;
         text-align: center;
         margin-bottom: 10px;
-        margin-right: 0;
     }
 
     .btn-juego,
     .btn-logout {
         flex: 1;
         text-align: center;
-        margin-right: 0;
     }
 }
