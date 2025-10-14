@@ -4,7 +4,8 @@ USE bibliotecaOnline;
 CREATE TABLE usuarios (
     email varchar(255) primary key,
     nombre varchar(100) not null,
-    passwd varchar(255) not null
+    passwd varchar(255) not null,
+    foto varchar(255) not null
 );
 
 CREATE TABLE juegos (

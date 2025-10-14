@@ -1,7 +1,7 @@
-INSERT INTO bibliotecaOnline.usuarios (email, nombre, passwd) VALUES
-('mateussousa@gmail.com', 'Matheus', '$2y$10$zR38vqb4Hro5drWEUl/k8e.KwD7DPyWmy3WXoOBBjjDEiRsxq/hdC'),
-('gabriel@informatica.com', 'Gabriel', '$2y$10$VrWlYeDID0ZKPW8XmyR91uFxlupisT1WrAg/QlEhyL9l120SXX/GS'),
-('pepe@gmail.com', 'Pepe', '$2y$10$0H.AYMe9BBxvxxkzKLfR3.mnt.FY38xaWLABJi5LDHWWhVswOfWnC');
+INSERT INTO bibliotecaOnline.usuarios (email, nombre, passwd, foto) VALUES
+('mateussousa@gmail.com', 'Matheus', '$2y$10$zR38vqb4Hro5drWEUl/k8e.KwD7DPyWmy3WXoOBBjjDEiRsxq/hdC', '../../Imgs/Fotos_Perfil/Foto_Base.png'),
+('gabriel@informatica.com', 'Gabriel', '$2y$10$VrWlYeDID0ZKPW8XmyR91uFxlupisT1WrAg/QlEhyL9l120SXX/GS', '../../Imgs/Fotos_Perfil/Foto_Base.png'),
+('pepe@gmail.com', 'Pepe', '$2y$10$0H.AYMe9BBxvxxkzKLfR3.mnt.FY38xaWLABJi5LDHWWhVswOfWnC', '../../Imgs/Fotos_Perfil/Foto_Base.png');
 
 INSERT INTO bibliotecaOnline.juegos (titulo, descripcion, autor, caratula, categoria, enlace, ano, propietario) VALUES
 ('Minecraft', 'Juego de mundo abierto donde puedes construir, explorar y sobrevivir en mundos generados aleatoriamente.', 'Mojang Studios', '../../Imgs/Caratulas_Juegos_Ejemplo/Minecraft.jpg', 'Sandbox', 'https://www.minecraft.net/', 2011, 'mateussousa@gmail.com'),
