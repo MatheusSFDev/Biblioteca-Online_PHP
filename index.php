@@ -8,5 +8,4 @@ if (isset($_SESSION["nombreLogin"])) {
     header("location: PHP/Login/Login.php");
     exit;
 }
-
 ?>

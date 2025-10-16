@@ -16,18 +16,19 @@ session_start();
             <h1>Login</h1>
             <div id="linea"></div>
             <?php echo (isset($_SESSION["correcto"]) ? $_SESSION["correcto"] : ""); if (isset($_SESSION["correcto"])) $_SESSION["correcto"] = ""; ?>
+            <?php echo (isset($_SESSION["err_Login"]) ? $_SESSION["err_Login"] : ""); $_SESSION["err_Login"] = ""; ?>
 
             <form action="Login_DB.php" method="post">
                 <div class="campo">
-                    <input type="text" name="email" placeholder="Email" maxlength="255" value="<?php echo (isset($_SESSION["email"]) ? $_SESSION["email"] : "") ?>"> 
+                    <input type="text" name="email" placeholder="Email" maxlength="255" value="<?php echo (isset($_SESSION["email_Login"]) ? $_SESSION["email_Login"] : "") ?>"> 
                     <br/>
-                    <?php echo (isset($_SESSION["err_Email"]) ? $_SESSION["err_Email"] : "") ?>
+                    <?php echo (isset($_SESSION["err_Email_Login"]) ? $_SESSION["err_Email_Login"] : "") ?>
                 </div>
 
                 <div class="campo">
                     <input type="password" name="passwd" placeholder="Contraseña"> 
                     <br/>
-                    <?php echo (isset($_SESSION["err_Passwd"]) ? $_SESSION["err_Passwd"] : "") ?>
+                    <?php echo (isset($_SESSION["err_Passwd_Login"]) ? $_SESSION["err_Passwd_Login"] : "") ?>
                 </div>
 
                 <input type="submit">

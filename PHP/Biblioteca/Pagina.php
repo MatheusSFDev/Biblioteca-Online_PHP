@@ -31,6 +31,7 @@ require 'leerJuegos_DB.php';
 
                         if (res.buscados.length !== 0) {
                             document.getElementById("noJuego").style["display"] = "none";
+
                             for (let x = 0 ; x < res.buscados.length ; x++) {
                                 document.getElementById(res.buscados[x]).style["display"] = "inline";
                             }
@@ -57,13 +58,11 @@ require 'leerJuegos_DB.php';
                 </svg>
             </a>
             <p class="welcome-user">Hola <?php echo $_SESSION["nombreLogin"]; ?>!</p>
-
             <form>
                 <input type="text" onkeyup="barraBusqueda(this.value)" placeholder="Buscar Juegos...">
             </form>
-
             <a href="Crear/nuevoJuego.php" class="btn-juego">Añadir Juego</a>
-            <a href="../LogOut.php" class="btn-logout">Cerrar Sesión</a>
+            <a href="Perfil.php"><img src="<?php echo $_SESSION["fotoLogin"]; ?>" style="width:64px; border-radius:64px;"></a>
         </header>
 
         <div id="juegos">

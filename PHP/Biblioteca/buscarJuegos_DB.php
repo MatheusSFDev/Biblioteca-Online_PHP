@@ -1,5 +1,4 @@
 <?php
-
 $fragmento = $_GET["b"];
 $todos = [];
 $buscados = [];

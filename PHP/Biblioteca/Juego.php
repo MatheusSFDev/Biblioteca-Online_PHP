@@ -34,7 +34,7 @@ if ($result === false) {
             </a>
             <p class="welcome-user">Hola <?php echo $_SESSION["nombreLogin"]; ?>!</p>
             <a href="Crear/nuevoJuego.php" class="btn-juego">Añadir Juego</a>
-            <a href="../LogOut.php" class="btn-logout">Cerrar Sesión</a>
+            <a href="Perfil.php"><img src="<?php echo $_SESSION["fotoLogin"]; ?>" style="width:64px; border-radius:64px;"></a>
         </header>
 
         <div class="juego-detalle">

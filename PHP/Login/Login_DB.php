@@ -7,7 +7,7 @@ $passwd = $_POST["passwd"];
 
 if (datosCorrectos($email, $passwd)) {
     try {
-        $sentencia = $conn->prepare("SELECT email, passwd, nombre FROM usuarios WHERE email like(:email)");
+        $sentencia = $conn->prepare("SELECT email, passwd, nombre, foto FROM usuarios WHERE email like(:email)");
         $sentencia->bindParam(":email", $email);
         $sentencia->execute();
 
@@ -17,27 +17,28 @@ if (datosCorrectos($email, $passwd)) {
             if (password_verify($passwd, $result["passwd"])) {
                 $_SESSION["nombreLogin"] = $result["nombre"];
                 $_SESSION["emailLogin"] = $result["email"];
+                $_SESSION["fotoLogin"] = $result["foto"];
 
                 $conn = null;
                 header("Location: ../Biblioteca/Pagina.php");
                 exit;
             } else {
-                $_SESSION["err_Passwd"] = "<p>! La contraseña esta Incorrecta !</p>";
+                $_SESSION["err_Passwd_Login"] = "<p>! La contraseña esta Incorrecta !</p>";
 
                 $conn = null;
                 header("Location: Login.php");
                 exit;
             }
         } else {
-            $_SESSION["email"] = "";
-            $_SESSION["err_Email"] = "<p>! El Correo no Existe !</p>";
+            $_SESSION["email_Login"] = "";
+            $_SESSION["err_Email_Login"] = "<p>! El Correo no Existe !</p>";
 
             $conn = null;
             header("Location: Login.php");
             exit;
         }
     } catch (PDOException $ex) {
-        echo "Operación Fallida";
+        $_SESSION["err_Login"] = "<p> Operación Fallida </p>";
     }
 } else {
     header("Location: Login.php");
@@ -50,7 +51,7 @@ function datosCorrectos($email, $passwd) {
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL) || empty($email)) {
         $correcto = false;
-        $_SESSION["email"] = "";
+        $_SESSION["email_Login"] = "";
 
         if (empty($email)) {
             $err = "El Campo esta Vacio";
@@ -58,17 +59,17 @@ function datosCorrectos($email, $passwd) {
             $err = "No Cumple con un formato correcto de Correo";
         }
 
-        $_SESSION["err_Email"] = "<p>! " . $err . " !</p>";
+        $_SESSION["err_Email_Login"] = "<p>! " . $err . " !</p>";
     } else {
-        $_SESSION["email"] = $email;
-        $_SESSION["err_Email"] = "";
+        $_SESSION["email_Login"] = $email;
+        $_SESSION["err_Email_Login"] = "";
     }
 
     if (empty($passwd)) { 
         $correcto = false;
-        $_SESSION["err_Passwd"] = "<p>! Debes intoducir una Contraseña !</p>";
+        $_SESSION["err_Passwd_Login"] = "<p>! Debes intoducir una Contraseña !</p>";
     } else {
-        $_SESSION["err_Passwd"] = "";
+        $_SESSION["err_Passwd_Login"] = "";
     }
 
     return $correcto;

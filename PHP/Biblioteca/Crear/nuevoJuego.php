@@ -5,12 +5,12 @@ if (!isset($_SESSION["emailLogin"])) {
     exit;
 }
 
-$_SESSION["titulo"] = "";
-$_SESSION["descripcion"] = "";
-$_SESSION["autor"] = "";
-$_SESSION["categoria"] = "";
-$_SESSION["enlace"] = "";
-$_SESSION["ano"] = "";
+if (!isset($_SESSION["titulo_NuevoJuego"])) $_SESSION["titulo_NuevoJuego"] = "";
+if (!isset($_SESSION["descripcion_NuevoJuego"])) $_SESSION["descripcion_NuevoJuego"] = "";
+if (!isset($_SESSION["autor_NuevoJuego"])) $_SESSION["autor_NuevoJuego"] = "";
+if (!isset($_SESSION["categoria_NuevoJuego"])) $_SESSION["categoria_NuevoJuego"] = "";
+if (!isset($_SESSION["enlace_NuevoJuego"])) $_SESSION["enlace_NuevoJuego"] = "";
+if (!isset($_SESSION["ano_NuevoJuego"])) $_SESSION["ano_NuevoJuego"] = "";
 ?>
 
 <!DOCTYPE html>
@@ -34,54 +34,54 @@ $_SESSION["ano"] = "";
             </a>
             <p class="welcome-user">Hola <?php echo $_SESSION["nombreLogin"]; ?>!</p>
             <a href="nuevoJuego.php" class="btn-juego">Añadir Juego</a>
-            <a href="../../LogOut.php" class="btn-logout">Cerrar Sesión</a>
+            <a href="Perfil.php"><img src="<?php echo "../" . $_SESSION["fotoLogin"]; ?>" style="width:64px; border-radius:64px;"></a>
         </header>
 
         <div id="caja">
             <h1>Añadir Nuevo Juego</h1>
             <div id="linea"></div>
-            <?php echo (isset($_SESSION["err_Try"]) ? $_SESSION["err_Try"] : ""); $_SESSION["err_Try"] = ""; ?>
+            <?php echo (isset($_SESSION["err_Try_NuevoJuego"]) ? $_SESSION["err_Try_NuevoJuego"] : ""); $_SESSION["err_Try_NuevoJuego"] = ""; ?>
 
             <form action="nuevoJuego_DB.php" method="post" enctype="multipart/form-data">
                 <div class="campo">
-                    <input type="text" name="titulo" placeholder="Titulo" maxlength="200" value="<?php echo (isset($_SESSION["titulo"]) ? $_SESSION["titulo"] : "") ?>">
+                    <input type="text" name="titulo" placeholder="Titulo" maxlength="200" value="<?php echo (isset($_SESSION["titulo_NuevoJuego"]) ? $_SESSION["titulo_NuevoJuego"] : "") ?>">
                     <br/>
-                    <?php echo (isset($_SESSION["err_Titulo"]) ? $_SESSION["err_Titulo"] : "") ?>
+                    <?php echo (isset($_SESSION["err_Titulo_NuevoJuego"]) ? $_SESSION["err_Titulo_NuevoJuego"] : "") ?>
                 </div>
 
                 <div class="campo">
-                    <textarea name="descripcion" placeholder="Descripción" maxlength="65535"><?php echo (isset($_SESSION["descripcion"]) ? $_SESSION["descripcion"] : "") ?></textarea>
+                    <textarea name="descripcion" placeholder="Descripción" maxlength="65535"><?php echo (isset($_SESSION["descripcion_NuevoJuego"]) ? $_SESSION["descripcion_NuevoJuego"] : "") ?></textarea>
                     <br/>
                 </div>
                 
                 <div class="campo">
-                    <input type="text" name="autor" placeholder="Autor" maxlength="100" value="<?php echo (isset($_SESSION["autor"]) ? $_SESSION["autor"] : "") ?>">
+                    <input type="text" name="autor" placeholder="Autor" maxlength="100" value="<?php echo (isset($_SESSION["autor_NuevoJuego"]) ? $_SESSION["autor_NuevoJuego"] : "") ?>">
                     <br/>
-                    <?php echo (isset($_SESSION["err_Autor"]) ? $_SESSION["err_Autor"] : "") ?>
+                    <?php echo (isset($_SESSION["err_Autor_NuevoJuego"]) ? $_SESSION["err_Autor_NuevoJuego"] : "") ?>
                 </div>
 
                 <div class="campo">
                     <input type="file" name="caratula">
                     <br/>
-                    <?php echo (isset($_SESSION["err_Caratula"]) ? $_SESSION["err_Caratula"] : "") ?>
+                    <?php echo (isset($_SESSION["err_Caratula_NuevoJuego "]) ? $_SESSION["err_Caratula_NuevoJuego "] : "") ?>
                 </div>
 
                 <div class="campo">
-                    <input type="text" name="categoria" placeholder="Categoria" maxlength="50" value="<?php echo (isset($_SESSION["categoria"]) ? $_SESSION["categoria"] : "") ?>">
+                    <input type="text" name="categoria" placeholder="Categoria" maxlength="50" value="<?php echo (isset($_SESSION["categoria_NuevoJuego"]) ? $_SESSION["categoria_NuevoJuego"] : "") ?>">
                     <br/>
-                    <?php echo (isset($_SESSION["err_Categoria"]) ? $_SESSION["err_Categoria"] : "") ?>
+                    <?php echo (isset($_SESSION["err_Categoria_NuevoJuego"]) ? $_SESSION["err_Categoria_NuevoJuego"] : "") ?>
                 </div>
 
                 <div class="campo">
-                    <input type="text" name="enlace" placeholder="Enlace" maxlength="500" value="<?php echo (isset($_SESSION["enlace"]) ? $_SESSION["enlace"] : "") ?>">
+                    <input type="text" name="enlace" placeholder="Enlace" maxlength="500" value="<?php echo (isset($_SESSION["enlace_NuevoJuego"]) ? $_SESSION["enlace_NuevoJuego"] : "") ?>">
                     <br/>
-                    <?php echo (isset($_SESSION["err_enlace"]) ? $_SESSION["err_enlace"] : "") ?>
+                    <?php echo (isset($_SESSION["err_enlace_NuevoJuego"]) ? $_SESSION["err_enlace_NuevoJuego"] : "") ?>
                 </div>
 
                 <div class="campo">
-                    <input type="number" name="ano" placeholder="Año" min="1950" value="<?php echo (isset($_SESSION["ano"]) ? $_SESSION["ano"] : "") ?>">
+                    <input type="number" name="ano" placeholder="Año" min="1950" value="<?php echo (isset($_SESSION["ano_NuevoJuego"]) ? $_SESSION["ano_NuevoJuego"] : "") ?>">
                     <br/>
-                    <?php echo (isset($_SESSION["err_Año"]) ? $_SESSION["err_ano"] : "") ?>
+                    <?php echo (isset($_SESSION["err_Año_NuevoJuego"]) ? $_SESSION["err_ano"] : "") ?>
                 </div>
 
                 <input type="submit">
