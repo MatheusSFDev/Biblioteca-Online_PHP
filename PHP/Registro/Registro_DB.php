@@ -9,12 +9,19 @@ $passwd_R = $_POST["passwd_R"];
 $passwd_H = password_hash($passwd, PASSWORD_DEFAULT);
 
 if (datosCorrectos($nombre, $email, $passwd, $passwd_R)) {
+    $foto = guardarFoto();
+} else {
+    $foto = "false";
+}
+
+if ($foto != "false") {
     try {
-        $sentencia = $conn->prepare("INSERT INTO usuarios(email, nombre, passwd) VALUE (:email, :nombre, :passwd)");
+        $sentencia = $conn->prepare("INSERT INTO usuarios(email, nombre, passwd, foto) VALUE (:email, :nombre, :passwd, :foto)");
 
         $sentencia->bindParam(":email", $email);
         $sentencia->bindParam(":nombre", $nombre);
         $sentencia->bindParam(":passwd", $passwd_H);
+        $sentencia->bindParam(":foto", $foto);
 
         $sentencia->execute();
 
@@ -107,5 +114,39 @@ function emailValido($mail) {
     }
 
     return $result === false;
+}
+
+function guardarFoto() {
+    if ($_FILES["foto"]["error"] === UPLOAD_ERR_OK) {
+        $nombreNuevo = md5(basename($_FILES["foto"]["name"]) . uniqid('', true));
+        $extencion = strtolower(pathinfo(basename($_FILES["foto"]["name"]))['extension']);
+        $rutaGuardado = "../../Imgs/Fotos_Perfil/" . $nombreNuevo . "." . $extencion;
+        $rutaBiblioteca = "../../Imgs/Fotos_Perfil/" . $nombreNuevo . "." . $extencion;
+
+        if (file_exists($rutaGuardado)) {
+            $_SESSION["err_Foto"] = "<p>! La Foto no se pudo Guardar !</p>";
+            return "false";
+        }
+
+        if ($_FILES["foto"]["size"] > 10000000) { // 10 MB
+            $_SESSION["err_Foto"] = "<p>! La Imagen supera el limite de 512 KB !</p>";
+            return "false";
+        }
+
+        if($extencion != "jpg" && $extencion != "png" && $extencion != "jpeg") {
+            $_SESSION["err_Foto"] = "<p>! El Fichero no es una Imagen (JPG / PNG / JPEG) !</p>";
+            return "false";
+        }
+        
+        if (move_uploaded_file($_FILES["foto"]["tmp_name"], $rutaGuardado)) {
+            $_SESSION["err_Foto"] = "";
+            return $rutaBiblioteca;
+        } else {
+            $_SESSION["err_Foto"] = "<p>! La Foto no se pudo Guardar !</p>";
+            return "false";
+        }
+    } else {
+        return "../../Imgs/Fotos_Perfil/Foto_Base.png";
+    }
 }
 ?>

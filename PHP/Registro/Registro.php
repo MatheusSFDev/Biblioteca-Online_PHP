@@ -57,7 +57,7 @@ session_start();
             <div id="linea"></div>
             <?php echo (isset($_SESSION["err_Try"]) ? $_SESSION["err_Try"] : ""); $_SESSION["err_Try"] = ""; ?>
 
-            <form action="Registro_DB.php" method="post">
+            <form action="Registro_DB.php" method="post" enctype="multipart/form-data">
                 <div class="campo">
                     <input type="text" name="nombre" placeholder="Nombre" maxlength="100" value="<?php echo (isset($_SESSION["nombre"]) ? $_SESSION["nombre"] : "") ?>">
                     <br/>
@@ -86,6 +86,12 @@ session_start();
                 <div class="campo">
                     <input type="password" name="passwd_R" placeholder="Repita la Contraseña"> 
                     <br/>
+                </div>
+
+                <div class="campo">
+                    <input type="file" name="foto">
+                    <br/>
+                    <?php echo (isset($_SESSION["err_Foto"]) ? $_SESSION["err_Foto"] : "") ?>
                 </div>
 
                 <input type="submit">
