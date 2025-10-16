@@ -49,7 +49,7 @@ $conn = null;
             </a>
             <p class="welcome-user">Hola <?php echo $_SESSION["nombreLogin"]; ?>!</p>
             <a href="../Crear/nuevoJuego.php" class="btn-juego">Añadir Juego</a>
-            <a href="Perfil.php"><img src="<?php echo "../" . $_SESSION["fotoLogin"]; ?>" style="width:64px; border-radius:64px;"></a>
+            <a href="../Perfil.php"><img src="<?php echo "../" . $_SESSION["fotoLogin"]; ?>" style="width:64px; border-radius:64px;"></a>
         </header>
 
         <div id="caja">
@@ -107,3 +107,12 @@ $conn = null;
         </div>
     </body>
 </html>
+
+<?php
+unset($_SESSION["titulo_ModificarJuego"]);
+unset($_SESSION["descripcion_ModificarJuego"]);
+unset($_SESSION["autor_ModificarJuego"]);
+unset($_SESSION["categoria_ModificarJuego"]);
+unset($_SESSION["enlace_ModificarJuego"]);
+unset($_SESSION["ano_ModificarJuego"]);
+?>

@@ -34,7 +34,7 @@ if (!isset($_SESSION["ano_NuevoJuego"])) $_SESSION["ano_NuevoJuego"] = "";
             </a>
             <p class="welcome-user">Hola <?php echo $_SESSION["nombreLogin"]; ?>!</p>
             <a href="nuevoJuego.php" class="btn-juego">Añadir Juego</a>
-            <a href="Perfil.php"><img src="<?php echo "../" . $_SESSION["fotoLogin"]; ?>" style="width:64px; border-radius:64px;"></a>
+            <a href="../Perfil.php"><img src="<?php echo "../" . $_SESSION["fotoLogin"]; ?>" style="width:64px; border-radius:64px;"></a>
         </header>
 
         <div id="caja">
@@ -46,7 +46,7 @@ if (!isset($_SESSION["ano_NuevoJuego"])) $_SESSION["ano_NuevoJuego"] = "";
                 <div class="campo">
                     <input type="text" name="titulo" placeholder="Titulo" maxlength="200" value="<?php echo (isset($_SESSION["titulo_NuevoJuego"]) ? $_SESSION["titulo_NuevoJuego"] : "") ?>">
                     <br/>
-                    <?php echo (isset($_SESSION["err_Titulo_NuevoJuego"]) ? $_SESSION["err_Titulo_NuevoJuego"] : "") ?>
+                    <?php echo (isset($_SESSION["err_titulo_NuevoJuego"]) ? $_SESSION["err_titulo_NuevoJuego"] : "") ?>
                 </div>
 
                 <div class="campo">
@@ -57,19 +57,19 @@ if (!isset($_SESSION["ano_NuevoJuego"])) $_SESSION["ano_NuevoJuego"] = "";
                 <div class="campo">
                     <input type="text" name="autor" placeholder="Autor" maxlength="100" value="<?php echo (isset($_SESSION["autor_NuevoJuego"]) ? $_SESSION["autor_NuevoJuego"] : "") ?>">
                     <br/>
-                    <?php echo (isset($_SESSION["err_Autor_NuevoJuego"]) ? $_SESSION["err_Autor_NuevoJuego"] : "") ?>
+                    <?php echo (isset($_SESSION["err_autor_NuevoJuego"]) ? $_SESSION["err_autor_NuevoJuego"] : "") ?>
                 </div>
 
                 <div class="campo">
                     <input type="file" name="caratula">
                     <br/>
-                    <?php echo (isset($_SESSION["err_Caratula_NuevoJuego "]) ? $_SESSION["err_Caratula_NuevoJuego "] : "") ?>
+                    <?php echo (isset($_SESSION["err_caratula_NuevoJuego"]) ? $_SESSION["err_caratula_NuevoJuego"] : "") ?>
                 </div>
 
                 <div class="campo">
                     <input type="text" name="categoria" placeholder="Categoria" maxlength="50" value="<?php echo (isset($_SESSION["categoria_NuevoJuego"]) ? $_SESSION["categoria_NuevoJuego"] : "") ?>">
                     <br/>
-                    <?php echo (isset($_SESSION["err_Categoria_NuevoJuego"]) ? $_SESSION["err_Categoria_NuevoJuego"] : "") ?>
+                    <?php echo (isset($_SESSION["err_categoria_NuevoJuego"]) ? $_SESSION["err_categoria_NuevoJuego"] : "") ?>
                 </div>
 
                 <div class="campo">
@@ -81,7 +81,7 @@ if (!isset($_SESSION["ano_NuevoJuego"])) $_SESSION["ano_NuevoJuego"] = "";
                 <div class="campo">
                     <input type="number" name="ano" placeholder="Año" min="1950" value="<?php echo (isset($_SESSION["ano_NuevoJuego"]) ? $_SESSION["ano_NuevoJuego"] : "") ?>">
                     <br/>
-                    <?php echo (isset($_SESSION["err_Año_NuevoJuego"]) ? $_SESSION["err_ano"] : "") ?>
+                    <?php echo (isset($_SESSION["err_ano_NuevoJuego"]) ? $_SESSION["err_ano_NuevoJuego"] : "") ?>
                 </div>
 
                 <input type="submit">
@@ -89,3 +89,19 @@ if (!isset($_SESSION["ano_NuevoJuego"])) $_SESSION["ano_NuevoJuego"] = "";
         </div>
     </body>
 </html>
+
+<?php
+unset($_SESSION["titulo_NuevoJuego"]);
+unset($_SESSION["descripcion_NuevoJuego"]);
+unset($_SESSION["autor_NuevoJuego"]);
+unset($_SESSION["categoria_NuevoJuego"]);
+unset($_SESSION["enlace_NuevoJuego"]);
+unset($_SESSION["ano_NuevoJuego"]);
+
+unset($_SESSION["err_titulo_NuevoJuego"]);
+unset($_SESSION["err_descripcion_NuevoJuego"]);
+unset($_SESSION["err_autor_NuevoJuego"]);
+unset($_SESSION["err_categoria_NuevoJuego"]);
+unset($_SESSION["err_enlace_NuevoJuego"]);
+unset($_SESSION["err_ano_NuevoJuego"]);
+?>
