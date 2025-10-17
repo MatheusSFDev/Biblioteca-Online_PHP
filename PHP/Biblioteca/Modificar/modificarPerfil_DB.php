@@ -61,12 +61,12 @@ if ($_POST["tipo"] == "1") {
             $_SESSION["err"] = "<p>Operación Fallida</p>";
 
             $conn = null;
-            header("Location: modificarPerfil.php");
+            header("Location: modificarPerfil.php?tipo=1");
             exit;
         }
     } else {
         $conn = null;
-        header("Location: modificarPerfil.php");
+        header("Location: modificarPerfil.php?tipo=1");
         exit;
     }
 } else {
@@ -116,12 +116,12 @@ if ($_POST["tipo"] == "1") {
             $_SESSION["err"] = "<p>Operación Fallida" . $ex ."/p>";
 
             $conn = null;
-            header("Location: modificarPerfil.php");
+            header("Location: modificarPerfil.php?tipo=2");
             exit;
         }
     } else {
         $conn = null;
-        header("Location: modificarPerfil.php");
+        header("Location: modificarPerfil.php?tipo=2");
         exit;
     }
 }

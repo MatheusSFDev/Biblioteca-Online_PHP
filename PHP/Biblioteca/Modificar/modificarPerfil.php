@@ -6,6 +6,16 @@ if (!isset($_SESSION["emailLogin"])) {
 }
 
 if (!isset($_SESSION["nombre"])) $_SESSION["nombre"] = $_SESSION["nombreLogin"];
+
+$style1 = "display: block;";
+$style2 = "display: none;";
+
+if (isset($_GET["tipo"])) {
+    if ($_GET["tipo"] == "2") {
+        $style1 = "display: none;";
+        $style2 = "display: block;";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -85,7 +95,7 @@ if (!isset($_SESSION["nombre"])) $_SESSION["nombre"] = $_SESSION["nombreLogin"];
             <a href="../Perfil.php"><img src="<?php echo "../" . $_SESSION["fotoLogin"]; ?>" style="width:64px; border-radius:64px;"></a>
         </header>
 
-        <div id="caja" style="display: block;">
+        <div id="caja" style="<?php echo $style1; ?>">
             <h1>Editar Perfil</h1>
             <div id="linea"></div>
             <?php echo (isset($_SESSION["err"]) ? $_SESSION["err"] : ""); ?>
@@ -110,7 +120,7 @@ if (!isset($_SESSION["nombre"])) $_SESSION["nombre"] = $_SESSION["nombreLogin"];
             <button onclick="switchCajaPasswd()">Cambiar la Contraseña</button>
         </div>
 
-        <div id="caja_Passwd" style="display: none;">
+        <div id="caja_Passwd" style="<?php echo $style2; ?>">
             <h1>Cambiar la Contraseña</h1>
             <div id="linea"></div>
             <?php echo (isset($_SESSION["err"]) ? $_SESSION["err"] : ""); ?>

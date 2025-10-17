@@ -40,7 +40,7 @@ if (datosCorrectos($email, $passwd)) {
             exit;
         }
     } catch (PDOException $ex) {
-        $_SESSION["err_Login"] = "<p> Operación Fallida </p>";
+        $_SESSION["err"] = "<p> Operación Fallida </p>";
     }
 } else {
     header("Location: Login.php");
