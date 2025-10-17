@@ -136,7 +136,7 @@ function guardarFoto() {
             return "false";
         }
 
-        if ($_FILES["caratula"]["size"] > 524288) { // 512 KB
+        if ($_FILES["caratula"]["size"] > 10000000) { // 10 MB
             $_SESSION["err_Caratula_ModificarJuego"] = "<p>! La Imagen supera el limite de 512 KB !</p>";
             return "false";
         }
