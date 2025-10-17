@@ -15,20 +15,20 @@ session_start();
         <div id="caja">
             <h1>Login</h1>
             <div id="linea"></div>
-            <?php echo (isset($_SESSION["correcto"]) ? $_SESSION["correcto"] : ""); if (isset($_SESSION["correcto"])) $_SESSION["correcto"] = ""; ?>
-            <?php echo (isset($_SESSION["err_Login"]) ? $_SESSION["err_Login"] : ""); $_SESSION["err_Login"] = ""; ?>
+            <?php echo (isset($_SESSION["correcto"]) ? $_SESSION["correcto"] : ""); ?>
+            <?php echo (isset($_SESSION["err"]) ? $_SESSION["err"] : ""); ?>
 
             <form action="Login_DB.php" method="post">
                 <div class="campo">
-                    <input type="text" name="email" placeholder="Email" maxlength="255" value="<?php echo (isset($_SESSION["email_Login"]) ? $_SESSION["email_Login"] : "") ?>"> 
+                    <input type="text" name="email" placeholder="Email" maxlength="255" value="<?php echo (isset($_SESSION["email"]) ? $_SESSION["email"] : "") ?>"> 
                     <br/>
-                    <?php echo (isset($_SESSION["err_Email_Login"]) ? $_SESSION["err_Email_Login"] : "") ?>
+                    <?php echo (isset($_SESSION["err_Email"]) ? $_SESSION["err_Email"] : "") ?>
                 </div>
 
                 <div class="campo">
                     <input type="password" name="passwd" placeholder="Contraseña"> 
                     <br/>
-                    <?php echo (isset($_SESSION["err_Passwd_Login"]) ? $_SESSION["err_Passwd_Login"] : "") ?>
+                    <?php echo (isset($_SESSION["err_Passwd"]) ? $_SESSION["err_Passwd"] : "") ?>
                 </div>
 
                 <input type="submit">
@@ -38,3 +38,11 @@ session_start();
         </div>
     </body>
 </html>
+
+<?php
+unset($_SESSION["correcto"]);
+unset($_SESSION["err"]);
+unset($_SESSION["email"]);
+unset($_SESSION["err_Email"]);
+unset($_SESSION["err_Passwd"]);
+?>

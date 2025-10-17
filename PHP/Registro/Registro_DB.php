@@ -33,7 +33,7 @@ if ($foto != "false") {
         header("Location: ../Login/Login.php");
         exit;
     } catch (PDOException $ex) {
-        $_SESSION["err_Registro"] = "<p> Operación Fallida </p>";
+        $_SESSION["err"] = "<p> Operación Fallida </p>";
 
         $conn = null;
         header("Location: Registro.php");
@@ -51,7 +51,7 @@ function datosCorrectos($nombre, $email, $passwd, $passwd_R) {
 
     if (!preg_match("/^[a-zA-Z-' ]*$/", $nombre) || empty($nombre)) {
         $correcto = false;
-        $_SESSION["nombre_Registro"] = "";
+        $_SESSION["nombre"] = "";
 
         if (empty($nombre)) {
             $err = "El Campo esta Vacio";
@@ -59,15 +59,15 @@ function datosCorrectos($nombre, $email, $passwd, $passwd_R) {
             $err = "Solo se permiten letras, espacios y el caracter (')";
         }
 
-        $_SESSION["err_Nombre_Registro"] = "<p>! " . $err . " !</p>";
+        $_SESSION["err_Nombre"] = "<p>! " . $err . " !</p>";
     } else {
-        $_SESSION["nombre_Registro"] = $nombre;
-        $_SESSION["err_Nombre_Registro"] = "";
+        $_SESSION["nombre"] = $nombre;
+        $_SESSION["err_Nombre"] = "";
     }
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL) || empty($email) || !emailValido($email)) {
         $correcto = false;
-        $_SESSION["email_Registro"] = "";
+        $_SESSION["email"] = "";
 
         if (empty($email)) {
             $err = "El Campo esta Vacio";
@@ -77,15 +77,15 @@ function datosCorrectos($nombre, $email, $passwd, $passwd_R) {
             $err = "El Correo Introducido ya Existe";
         }
 
-        $_SESSION["err_Email_Registro"] = "<p>! " . $err . " !</p>";
+        $_SESSION["err_Email"] = "<p>! " . $err . " !</p>";
     } else {
-        $_SESSION["email_Registro"] = $email;
-        $_SESSION["err_Email_Registro"] = "";
+        $_SESSION["email"] = $email;
+        $_SESSION["err_Email"] = "";
     }
 
     if (($passwd !== $passwd_R || empty($passwd) || !passwdValida($passwd)) && $passwd != "123") { // Borrar Luego, solo se utiliza para tests durante Desarrollo 
         $correcto = false; 
-        $_SESSION["passwd_Registro"] = "";
+        $_SESSION["passwd"] = "";
 
         if (empty($passwd)) {
             $err = "El Campo esta Vacio";
@@ -95,10 +95,10 @@ function datosCorrectos($nombre, $email, $passwd, $passwd_R) {
             $err = "La Contraseña no cumple los Requisitos";
         }
 
-        $_SESSION["err_Passwd_Registro"] = "<p>! " . $err . " !</p>";
+        $_SESSION["err_Passwd"] = "<p>! " . $err . " !</p>";
     } else {
-        $_SESSION["passwd_Registro"] = $passwd;
-        $_SESSION["err_Passwd_Registro"] = "";
+        $_SESSION["passwd"] = $passwd;
+        $_SESSION["err_Passwd"] = "";
     }
 
     return $correcto;
@@ -115,7 +115,7 @@ function emailValido($mail) {
         $result = $sentencia->fetch(PDO::FETCH_ASSOC);
         $conn = null;
     } catch (PDOException $ex) {
-        $_SESSION["err_Registro"] = "<p> Operación Fallida </p>";
+        $_SESSION["err"] = "<p> Operación Fallida </p>";
     }
 
     return $result === false;
@@ -138,25 +138,25 @@ function guardarFoto() {
         $rutaBiblioteca = "../../Imgs/Fotos_Perfil/" . $nombreNuevo . "." . $extencion;
 
         if (file_exists($rutaGuardado)) {
-            $_SESSION["err_Foto_Registro"] = "<p>! La Foto no se pudo Guardar !</p>";
+            $_SESSION["err_Foto"] = "<p>! La Foto no se pudo Guardar !</p>";
             return "false";
         }
 
         if ($_FILES["foto"]["size"] > 10000000) { // 10 MB
-            $_SESSION["err_Foto_Registro"] = "<p>! La Imagen supera el limite de 512 KB !</p>";
+            $_SESSION["err_Foto"] = "<p>! La Imagen supera el limite de 512 KB !</p>";
             return "false";
         }
 
         if($extencion != "jpg" && $extencion != "png" && $extencion != "jpeg") {
-            $_SESSION["err_Foto_Registro"] = "<p>! El Fichero no es una Imagen (JPG / PNG / JPEG) !</p>";
+            $_SESSION["err_Foto"] = "<p>! El Fichero no es una Imagen (JPG / PNG / JPEG) !</p>";
             return "false";
         }
         
         if (move_uploaded_file($_FILES["foto"]["tmp_name"], $rutaGuardado)) {
-            $_SESSION["err_Foto_Registro"] = "";
+            $_SESSION["err_Foto"] = "";
             return $rutaBiblioteca;
         } else {
-            $_SESSION["err_Foto_Registro"] = "<p>! La Foto no se pudo Guardar !</p>";
+            $_SESSION["err_Foto"] = "<p>! La Foto no se pudo Guardar !</p>";
             return "false";
         }
     } else {

@@ -59,25 +59,25 @@ session_start();
         <div id="caja">
             <h1>Registro</h1>
             <div id="linea"></div>
-            <?php echo (isset($_SESSION["err_Registro"]) ? $_SESSION["err_Registro"] : ""); $_SESSION["err_Registro"] = ""; ?>
+            <?php echo (isset($_SESSION["err"]) ? $_SESSION["err"] : ""); $_SESSION["err"] = ""; ?>
 
             <form action="Registro_DB.php" method="post" enctype="multipart/form-data">
                 <div class="campo">
-                    <input type="text" name="nombre" placeholder="Nombre" maxlength="100" value="<?php echo (isset($_SESSION["nombre_Registro"]) ? $_SESSION["nombre_Registro"] : "") ?>">
+                    <input type="text" name="nombre" placeholder="Nombre" maxlength="100" value="<?php echo (isset($_SESSION["nombre"]) ? $_SESSION["nombre"] : "") ?>">
                     <br/>
-                    <?php echo (isset($_SESSION["err_Nombre_Registro"]) ? $_SESSION["err_Nombre_Registro"] : "") ?>
+                    <?php echo (isset($_SESSION["err_Nombre"]) ? $_SESSION["err_Nombre"] : "") ?>
                 </div>
 
                 <div class="campo">
-                    <input type="text" name="email" placeholder="Email" maxlength="255" value="<?php echo (isset($_SESSION["email_Registro"]) ? $_SESSION["email_Registro"] : "") ?>"> 
+                    <input type="text" name="email" placeholder="Email" maxlength="255" value="<?php echo (isset($_SESSION["email"]) ? $_SESSION["email"] : "") ?>"> 
                     <br/>
-                    <?php echo (isset($_SESSION["err_Email_Registro"]) ? $_SESSION["err_Email_Registro"] : "") ?>
+                    <?php echo (isset($_SESSION["err_Email"]) ? $_SESSION["err_Email"] : "") ?>
                 </div>
 
                 <div class="campo">
-                    <input type="password" name="passwd" placeholder="Contraseña" onkeyup="actualizarCondiciones(this.value)" value="<?php echo (isset($_SESSION["passwd_Registro"]) ? $_SESSION["passwd_Registro"] : "") ?>"> 
+                    <input type="password" name="passwd" placeholder="Contraseña" onkeyup="actualizarCondiciones(this.value)" value="<?php echo (isset($_SESSION["passwd"]) ? $_SESSION["passwd"] : "") ?>"> 
                     <br/>
-                    <?php echo (isset($_SESSION["err_Passwd_Registro"]) ? $_SESSION["err_Passwd_Registro"] : "") ?>
+                    <?php echo (isset($_SESSION["err_Passwd"]) ? $_SESSION["err_Passwd"] : "") ?>
 
                     <ul id="condicionesPasswd" style="display : none;">
                         <li id="minCaract" style="color : #fc8181;">Debe tener Minimo 8 Caracteres</li>
@@ -95,7 +95,7 @@ session_start();
                 <div class="campo">
                     <input type="file" name="foto">
                     <br/>
-                    <?php echo (isset($_SESSION["err_Foto_Registro"]) ? $_SESSION["err_Foto_Registro"] : "") ?>
+                    <?php echo (isset($_SESSION["err_Foto"]) ? $_SESSION["err_Foto"] : "") ?>
                 </div>
 
                 <input type="submit">
@@ -105,3 +105,14 @@ session_start();
         </div>
     </body>
 </html>
+
+<?php
+unset($_SESSION["err"]);
+unset($_SESSION["nombre"]);
+unset($_SESSION["err_Nombre"]);
+unset($_SESSION["email"]);
+unset($_SESSION["err_Email"]);
+unset($_SESSION["passwd"]);
+unset($_SESSION["err_Passwd"]);
+unset($_SESSION["err_Foto"]);
+?>

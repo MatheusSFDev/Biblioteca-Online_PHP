@@ -16,12 +16,12 @@ if ($_SESSION["emailLogin"] !== $result["propietario"]) {
     exit;
 }
 
-if (!isset($_SESSION["titulo_ModificarJuego"])) $_SESSION["titulo_ModificarJuego"] = $result["titulo"];
-if (!isset($_SESSION["descripcion_ModificarJuego"])) $_SESSION["descripcion_ModificarJuego"] = $result["descripcion"];
-if (!isset($_SESSION["autor_ModificarJuego"])) $_SESSION["autor_ModificarJuego"] = $result["autor"];
-if (!isset($_SESSION["categoria_ModificarJuego"])) $_SESSION["categoria_ModificarJuego"] = $result["categoria"];
-if (!isset($_SESSION["enlace_ModificarJuego"])) $_SESSION["enlace_ModificarJuego"] = $result["enlace"];
-if (!isset($_SESSION["ano_ModificarJuego"])) $_SESSION["ano_ModificarJuego"] = $result["ano"] != 0 ? $result["ano"] : "";
+if (!isset($_SESSION["titulo"])) $_SESSION["titulo"] = $result["titulo"];
+if (!isset($_SESSION["descripcion"])) $_SESSION["descripcion"] = $result["descripcion"];
+if (!isset($_SESSION["autor"])) $_SESSION["autor"] = $result["autor"];
+if (!isset($_SESSION["categoria"])) $_SESSION["categoria"] = $result["categoria"];
+if (!isset($_SESSION["enlace"])) $_SESSION["enlace"] = $result["enlace"];
+if (!isset($_SESSION["ano"])) $_SESSION["ano"] = $result["ano"] != 0 ? $result["ano"] : "";
 $ruta = $result["caratula"];
 $propietario = $result["propietario"];
 
@@ -55,48 +55,48 @@ $conn = null;
         <div id="caja">
             <h1>Editar Juego</h1>
             <div id="linea"></div>
-            <?php echo (isset($_SESSION["err_Try_ModificarJuego"]) ? $_SESSION["err_Try_ModificarJuego"] : ""); $_SESSION["err_Try_ModificarJuego"] = ""; ?>
+            <?php echo (isset($_SESSION["err"]) ? $_SESSION["err"] : ""); $_SESSION["err"] = ""; ?>
 
             <form action="modificarJuego_DB.php" method="post" enctype="multipart/form-data">
                 <div class="campo">
-                    <input type="text" name="titulo" placeholder="Titulo" maxlength="200" value="<?php echo (isset($_SESSION["titulo_ModificarJuego"]) ? $_SESSION["titulo_ModificarJuego"] : "") ?>">
+                    <input type="text" name="titulo" placeholder="Titulo" maxlength="200" value="<?php echo (isset($_SESSION["titulo"]) ? $_SESSION["titulo"] : "") ?>">
                     <br/>
-                    <?php echo (isset($_SESSION["err_Titulo_ModificarJuego"]) ? $_SESSION["err_Titulo_ModificarJuego"] : "") ?>
+                    <?php echo (isset($_SESSION["err_Titulo"]) ? $_SESSION["err_Titulo"] : "") ?>
                 </div>
 
                 <div class="campo">
-                    <textarea name="descripcion" placeholder="Descripción" maxlength="65535"><?php echo (isset($_SESSION["descripcion_ModificarJuego"]) ? $_SESSION["descripcion_ModificarJuego"] : "") ?></textarea>
+                    <textarea name="descripcion" placeholder="Descripción" maxlength="65535"><?php echo (isset($_SESSION["descripcion"]) ? $_SESSION["descripcion"] : "") ?></textarea>
                     <br/>
                 </div>
                 
                 <div class="campo">
-                    <input type="text" name="autor" placeholder="Autor" maxlength="100" value="<?php echo (isset($_SESSION["autor_ModificarJuego"]) ? $_SESSION["autor_ModificarJuego"] : "") ?>">
+                    <input type="text" name="autor" placeholder="Autor" maxlength="100" value="<?php echo (isset($_SESSION["autor"]) ? $_SESSION["autor"] : "") ?>">
                     <br/>
-                    <?php echo (isset($_SESSION["err_Autor_ModificarJuego"]) ? $_SESSION["err_Autor_ModificarJuego"] : "") ?>
+                    <?php echo (isset($_SESSION["err_Autor"]) ? $_SESSION["err_Autor"] : "") ?>
                 </div>
 
                 <div class="campo">
                     <input type="file" name="caratula">
                     <br/>
-                    <?php echo (isset($_SESSION["err_Caratula_ModificarJuego"]) ? $_SESSION["err_Caratula_ModificarJuego"] : "") ?>
+                    <?php echo (isset($_SESSION["err_Caratula"]) ? $_SESSION["err_Caratula"] : "") ?>
                 </div>
 
                 <div class="campo">
-                    <input type="text" name="categoria" placeholder="Categoria" maxlength="50" value="<?php echo (isset($_SESSION["categoria_ModificarJuego"]) ? $_SESSION["categoria_ModificarJuego"] : "") ?>">
+                    <input type="text" name="categoria" placeholder="Categoria" maxlength="50" value="<?php echo (isset($_SESSION["categoria"]) ? $_SESSION["categoria"] : "") ?>">
                     <br/>
-                    <?php echo (isset($_SESSION["err_Categoria_ModificarJuego"]) ? $_SESSION["err_Categoria_ModificarJuego"] : "") ?>
+                    <?php echo (isset($_SESSION["err_Categoria"]) ? $_SESSION["err_Categoria"] : "") ?>
                 </div>
 
                 <div class="campo">
-                    <input type="text" name="enlace" placeholder="Enlace" maxlength="500" value="<?php echo (isset($_SESSION["enlace_ModificarJuego"]) ? $_SESSION["enlace_ModificarJuego"] : "") ?>">
+                    <input type="text" name="enlace" placeholder="Enlace" maxlength="500" value="<?php echo (isset($_SESSION["enlace"]) ? $_SESSION["enlace"] : "") ?>">
                     <br/>
-                    <?php echo (isset($_SESSION["err_enlace_ModificarJuego"]) ? $_SESSION["err_enlace_ModificarJuego"] : "") ?>
+                    <?php echo (isset($_SESSION["err_enlace"]) ? $_SESSION["err_enlace"] : "") ?>
                 </div>
 
                 <div class="campo">
-                    <input type="number" name="ano" placeholder="Año" min="1950" value="<?php echo (isset($_SESSION["ano_ModificarJuego"]) ? $_SESSION["ano_ModificarJuego"] : "") ?>">
+                    <input type="number" name="ano" placeholder="Año" min="1950" value="<?php echo (isset($_SESSION["ano"]) ? $_SESSION["ano"] : "") ?>">
                     <br/>
-                    <?php echo (isset($_SESSION["err_Año"]) ? $_SESSION["err_ano_ModificarJuego"] : "") ?>
+                    <?php echo (isset($_SESSION["err_Año"]) ? $_SESSION["err_ano"] : "") ?>
                 </div>
 
                 <input type="hidden" name="id" value="<?php echo $_GET["id"]; ?>">
@@ -109,10 +109,17 @@ $conn = null;
 </html>
 
 <?php
-unset($_SESSION["titulo_ModificarJuego"]);
-unset($_SESSION["descripcion_ModificarJuego"]);
-unset($_SESSION["autor_ModificarJuego"]);
-unset($_SESSION["categoria_ModificarJuego"]);
-unset($_SESSION["enlace_ModificarJuego"]);
-unset($_SESSION["ano_ModificarJuego"]);
+unset($_SESSION["err"]);
+unset($_SESSION["titulo"]);
+unset($_SESSION["err_Titulo"]);
+unset($_SESSION["descripcion"]);
+unset($_SESSION["autor"]);
+unset($_SESSION["err_Autor"]);
+unset($_SESSION["err_Caratula"]);
+unset($_SESSION["categoria"]);
+unset($_SESSION["err_Categoria"]);
+unset($_SESSION["enlace"]);
+unset($_SESSION["err_enlace"]);
+unset($_SESSION["ano"]);
+unset($_SESSION["err_ano"]);
 ?>

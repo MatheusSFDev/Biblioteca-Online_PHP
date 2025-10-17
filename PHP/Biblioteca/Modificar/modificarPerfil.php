@@ -5,7 +5,7 @@ if (!isset($_SESSION["emailLogin"])) {
     exit;
 }
 
-if (!isset($_SESSION["nombre_Perfil"])) $_SESSION["nombre_Perfil"] = $_SESSION["nombreLogin"];
+if (!isset($_SESSION["nombre"])) $_SESSION["nombre"] = $_SESSION["nombreLogin"];
 ?>
 
 <!DOCTYPE html>
@@ -88,19 +88,19 @@ if (!isset($_SESSION["nombre_Perfil"])) $_SESSION["nombre_Perfil"] = $_SESSION["
         <div id="caja" style="display: block;">
             <h1>Editar Perfil</h1>
             <div id="linea"></div>
-            <?php echo (isset($_SESSION["err_Try_ModificarPerfil"]) ? $_SESSION["err_Try_ModificarPerfil"] : ""); $_SESSION["err_Try_ModificarPerfil"] = ""; ?>
+            <?php echo (isset($_SESSION["err"]) ? $_SESSION["err"] : ""); ?>
 
             <form action="modificarPerfil_DB.php" method="post" enctype="multipart/form-data">
                 <div class="campo">
-                    <input type="text" name="nombre" placeholder="Nombre" maxlength="100" value="<?php echo (isset($_SESSION["nombre_Perfil"]) ? $_SESSION["nombre_Perfil"] : "") ?>">
+                    <input type="text" name="nombre" placeholder="Nombre" maxlength="100" value="<?php echo (isset($_SESSION["nombre"]) ? $_SESSION["nombre"] : "") ?>">
                     <br/>
-                    <?php echo (isset($_SESSION["err_Nombre_Perfil"]) ? $_SESSION["err_Nombre_Perfil"] : "") ?>
+                    <?php echo (isset($_SESSION["err_Nombre"]) ? $_SESSION["err_Nombre"] : "") ?>
                 </div>
 
                 <div class="campo">
                     <input type="file" name="foto">
                     <br/>
-                    <?php echo (isset($_SESSION["err_Foto_Perfil"]) ? $_SESSION["err_Foto_Perfil"] : "") ?>
+                    <?php echo (isset($_SESSION["err_Foto"]) ? $_SESSION["err_Foto"] : "") ?>
                 </div>
 
                 <input type="hidden" name="tipo" value="1">
@@ -113,13 +113,13 @@ if (!isset($_SESSION["nombre_Perfil"])) $_SESSION["nombre_Perfil"] = $_SESSION["
         <div id="caja_Passwd" style="display: none;">
             <h1>Cambiar la Contraseña</h1>
             <div id="linea"></div>
-            <?php echo (isset($_SESSION["err_Try_ModificarPerfil"]) ? $_SESSION["err_Try_ModificarPerfil"] : ""); $_SESSION["err_Try_ModificarPerfil"] = ""; ?>
+            <?php echo (isset($_SESSION["err"]) ? $_SESSION["err"] : ""); ?>
 
             <form action="modificarPerfil_DB.php" method="post">
                 <div class="campo">
-                    <input type="password" name="passwd" placeholder="Contraseña" onkeyup="actualizarCondiciones(this.value)" value="<?php echo (isset($_SESSION["passwd_Perfil"]) ? $_SESSION["passwd_Perfil"] : "") ?>"> 
+                    <input type="password" name="passwd" placeholder="Contraseña" onkeyup="actualizarCondiciones(this.value)" value="<?php echo (isset($_SESSION["passwd"]) ? $_SESSION["passwd"] : "") ?>"> 
                     <br/>
-                    <?php echo (isset($_SESSION["err_Passwd_Perfil"]) ? $_SESSION["err_Passwd_Perfil"] : "") ?>
+                    <?php echo (isset($_SESSION["err_Passwd"]) ? $_SESSION["err_Passwd"] : "") ?>
 
                     <ul id="condicionesPasswd" style="display : none;">
                         <li id="minCaract" style="color : #fc8181;">Debe tener Minimo 8 Caracteres</li>
@@ -144,5 +144,10 @@ if (!isset($_SESSION["nombre_Perfil"])) $_SESSION["nombre_Perfil"] = $_SESSION["
 </html>
 
 <?php
-unset($_SESSION["nombre_Perfil"]);
+unset($_SESSION["err"]);
+unset($_SESSION["nombre"]);
+unset($_SESSION["err_Nombre"]);
+unset($_SESSION["err_Foto"]);
+unset($_SESSION["passwd"]);
+unset($_SESSION["err_Passwd"]);
 ?>

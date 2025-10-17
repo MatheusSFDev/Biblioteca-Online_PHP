@@ -26,17 +26,16 @@ if (!isset($_SESSION["emailLogin"])) {
                 </svg>
             </a>
             <p class="welcome-user">Hola <?php echo $_SESSION["nombreLogin"]; ?>!</p>
-
             <a href="Crear/nuevoJuego.php" class="btn-juego">Añadir Juego</a>
-
             <a href=""><img src="<?php echo $_SESSION["fotoLogin"]; ?>" style="width:64px; border-radius:64px;"></a>
         </header>
 
         <div>
             <p> <?php echo $_SESSION["nombreLogin"]; ?> </p>
+            <p> <?php echo $_SESSION["emailLogin"]; ?> </p>
             <img src="<?php echo $_SESSION["fotoLogin"]; ?>" style="width:248px; border-radius:64px;">
 
-            <br>
+            <a href="" class="btn-juego">Estadisticas</a>
             
             <a href="Modificar/modificarPerfil.php" class="btn-juego">Editar Perfil</a>
             <a href="../LogOut.php" class="btn-logout">Cerrar Sesión</a>
