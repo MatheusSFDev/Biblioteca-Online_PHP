@@ -14,3 +14,16 @@ INSERT INTO bibliotecaOnline.juegos (titulo, descripcion, autor, caratula, categ
 ('Call of Duty: Warzone', 'Shooter en primera persona ambientado en un entorno de batalla masiva con hasta 150 jugadores.', 'Infinity Ward', '../../Imgs/Caratulas_Juegos_Ejemplo/Warzone.jpg', 'Shooter', 'https://www.callofduty.com/warzone', 2020, 'mateussousa@gmail.com'),
 ('Super Mario Galaxy', 'Juego de plataformas 3D donde Mario explora planetas en el espacio para rescatar a la princesa Peach.', 'Nintendo', '../../Imgs/Caratulas_Juegos_Ejemplo/Mario_Galaxy.jpg', 'Plataformas', 'https://www.nintendo.com/es-es/Juegos/Wii/Super-Mario-Galaxy-283721.html', 2007, 'mateussousa@gmail.com'),
 ('Super Mario Odyssey', 'Juego de plataformas en 3D donde Mario viaja por diferentes mundos para rescatar a Peach.', 'Nintendo', '../../Imgs/Caratulas_Juegos_Ejemplo/Mario_Odyssey.jpg', 'Plataformas', 'https://www.nintendo.com/es-es/Juegos/Nintendo-Switch/Super-Mario-Odyssey-1173339.html', 2017, 'mateussousa@gmail.com');
+
+INSERT INTO bibliotecaOnline.votos (email, id, voto) VALUES
+('mateussousa@gmail.com', 2, 1),
+('mateussousa@gmail.com', 5, 1),
+('mateussousa@gmail.com', 8, 0),
+('gabriel@informatica.com', 1, 1),
+('gabriel@informatica.com', 3, 0),
+('gabriel@informatica.com', 4, 1),
+('gabriel@informatica.com', 7, 1),
+('pepe@gmail.com', 1, 1),
+('pepe@gmail.com', 6, 0),
+('pepe@gmail.com', 9, 1),
+('pepe@gmail.com', 10, 1);

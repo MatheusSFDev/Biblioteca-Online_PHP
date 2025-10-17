@@ -17,9 +17,20 @@ CREATE TABLE juegos (
     categoria varchar(50),
     enlace varchar(500),
     ano smallint,
+    visualizaciones bigint default 0,
     propietario varchar(255),
 
-    constraint jue_pro_fk foreign key (propietario) references usuarios(email)
+    CONSTRAINT jue_pro_fk FOREIGN KEY (propietario) REFERENCES usuarios(email)
+);
+
+CREATE TABLE votos (
+    voto boolean,
+    email varchar(255),
+    id int,
+
+    CONSTRAINT vot_pk  PRIMARY KEY (email, id),
+    CONSTRAINT vot_em_fk FOREIGN KEY (email) REFERENCES usuarios(email),
+    CONSTRAINT vot_id_fk FOREIGN KEY (id) REFERENCES juegos(id)
 );
 
 CREATE USER 'adminPHP'@'localhost' identified by 'qwerty-1234';
