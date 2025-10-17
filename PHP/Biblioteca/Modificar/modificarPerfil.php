@@ -127,9 +127,15 @@ if (isset($_GET["tipo"])) {
 
             <form action="modificarPerfil_DB.php" method="post">
                 <div class="campo">
-                    <input type="password" name="passwd" placeholder="Contraseña" onkeyup="actualizarCondiciones(this.value)" value="<?php echo (isset($_SESSION["passwd"]) ? $_SESSION["passwd"] : "") ?>"> 
+                    <input type="password" name="passwd" placeholder="Contraseña Actual"> 
                     <br/>
                     <?php echo (isset($_SESSION["err_Passwd"]) ? $_SESSION["err_Passwd"] : "") ?>
+                </div>
+
+                <div class="campo">
+                    <input type="password" name="newPasswd" placeholder="Nueva Contraseña" onkeyup="actualizarCondiciones(this.value)" value="<?php echo (isset($_SESSION["newPasswd"]) ? $_SESSION["newPasswd"] : "") ?>"> 
+                    <br/>
+                    <?php echo (isset($_SESSION["err_newPasswd"]) ? $_SESSION["err_newPasswd"] : "") ?>
 
                     <ul id="condicionesPasswd" style="display : none;">
                         <li id="minCaract" style="color : #fc8181;">Debe tener Minimo 8 Caracteres</li>
@@ -160,4 +166,6 @@ unset($_SESSION["err_Nombre"]);
 unset($_SESSION["err_Foto"]);
 unset($_SESSION["passwd"]);
 unset($_SESSION["err_Passwd"]);
+unset($_SESSION["newPasswd"]);
+unset($_SESSION["err_newPasswd"]);
 ?>

@@ -71,31 +71,32 @@ if ($_POST["tipo"] == "1") {
     }
 } else {
     $passwd = $_POST["passwd"];
+    $passwd_N = $_POST["newPasswd"];
     $passwd_R = $_POST["passwd_R"];
-    $passwd_H = password_hash($passwd, PASSWORD_DEFAULT);
+    $passwd_H = password_hash($passwd_N, PASSWORD_DEFAULT);
     $email = $_SESSION["emailLogin"];
     $correcto = true;
     $err = "";
 
-    if (($passwd !== $passwd_R || empty($passwd) || !passwdValida($passwd)) && $passwd != "123") { // Borrar Luego, solo se utiliza para tests durante Desarrollo 
+    if (($passwd_N !== $passwd_R || empty($passwd_N) || !passwdValida($passwd_N)) && $passwd_N != "123") { // Borrar Luego, solo se utiliza para tests durante Desarrollo 
         $correcto = false; 
-        $_SESSION["passwd"] = "";
+        $_SESSION["newPasswd"] = "";
 
-        if (empty($passwd)) {
+        if (empty($passwd_N)) {
             $err = "El Campo esta Vacio";
-        } elseif ($passwd !== $passwd_R) {
+        } elseif ($passwd_N !== $passwd_R) {
             $err = "Las Contraseñas no coinciden";
-        } elseif (!passwdValida($passwd)) {
+        } elseif (!passwdValida($passwd_N)) {
             $err = "La Contraseña no cumple los Requisitos";
         }
 
-        $_SESSION["err_Passwd"] = "<p>! " . $err . " !</p>";
+        $_SESSION["err_newPasswd"] = "<p>! " . $err . " !</p>";
     } else {
-        $_SESSION["passwd"] = $passwd;
-        $_SESSION["err_Passwd"] = "";
+        $_SESSION["newPasswd"] = $passwd_N;
+        $_SESSION["err_newPasswd"] = "";
     }
 
-    if ($correcto) {
+    if ($correcto && passwdCorrecta($passwd)) {
         require '../../Conexion_DB.php';
 
         try {
@@ -133,6 +134,31 @@ function passwdValida($passwd) {
     if (!preg_match("/[^a-zA-Z0-9\s]/", $passwd)) return false;
 
     return true;
+}
+
+function passwdCorrecta($passwd) {
+    $email = $_SESSION["emailLogin"];
+    require '../../Conexion_DB.php';
+
+    try {
+        $sentencia = $conn->prepare("SELECT passwd FROM usuarios WHERE email like(:email)");
+        $sentencia->bindParam(":email", $email);
+        $sentencia->execute();
+
+        $result = $sentencia->fetch(PDO::FETCH_ASSOC);
+
+        if (password_verify($passwd, $result["passwd"])) {
+            $conn = null;
+            return true;
+        } else {
+            $_SESSION["err_Passwd"] = "<p>! La contraseña esta Incorrecta !</p>";
+            $conn = null;
+            return false;
+        }
+    } catch (PDOException $ex) {
+        $_SESSION["err"] = "<p> Operación Fallida </p>";
+        return false;
+    }
 }
 
 function guardarFoto() {

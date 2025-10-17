@@ -10,7 +10,9 @@ require 'leerJuegos_DB.php';
 if ($result === false) {
     header("Location: Pagina.php");
     exit;
-}
+} 
+
+require ("sumarViews_DB.php");
 ?>
 
 <!DOCTYPE html>
