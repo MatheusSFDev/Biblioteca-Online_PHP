@@ -4,6 +4,10 @@ if (!isset($_SESSION["emailLogin"])) {
     header("Location: ../Login/Login.php");
     exit;
 }
+
+require 'Views/contarViews_DB.php';
+require 'Views/topVisitas_DB.php';
+require 'Views/viewsJuegos_DB.php';
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +35,28 @@ if (!isset($_SESSION["emailLogin"])) {
         </header>
 
         <div>
-            
+            <h1>Total Visualizaciones</h1>
+            <p><?php echo $viewsTotales; ?></p>
+            <br>
+
+            <h1>Top 3 Más Vistos</h1>
+            <div>
+            <?php
+                foreach ($resultTop as $juego) {
+                    echo "<p> Titulo: " . $juego["titulo"] . " / Views: " . $juego["visualizaciones"] . "</p>";
+                }   
+            ?>
+            </div>
+            <br>
+
+            <h1>Todas las Visualizaciones</h1>
+            <div>
+            <?php
+                foreach ($resultTodos as $juego) {
+                    echo "<p> Titulo: " . $juego["titulo"] . " / Views: " . $juego["visualizaciones"] . "</p>";
+                }   
+            ?>
+            </div>
         </div>
     </body>
 </html>

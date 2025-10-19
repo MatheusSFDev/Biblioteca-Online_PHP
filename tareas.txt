@@ -1,7 +1,2 @@
-1. Visualizaciones
-	- Hacer un nuevo HTML para presentar los numeros
-		- Nº de Views Totales
-		- Top 3 Juegos más visitados
-		- Lista completa de las views de sus juegos
-2. Sistema de Votos
-3. Login con Cookies
+1. Sistema de Votos
+2. Login con Cookies
