@@ -25,7 +25,7 @@ if (isset($_GET["tipo"])) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Editar Perfil | LevelUp Library</title>
         <link rel="stylesheet" href="../../../CSS/style_Header.css">
-        <link rel="stylesheet" href="../../../CSS/style_Form_Registro_Login.css">
+        <link rel="stylesheet" href="../../../CSS/style_Form_Login_Perfil.css">
         
         <script>
             function switchCajaPasswd() {

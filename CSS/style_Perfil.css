@@ -1,0 +1,104 @@
+/* * CSS para Perfil.php
+ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding-bottom: 60px;
+    /* padding-top: 120px; (ya incluido por style_Header.css) */
+}
+
+.perfil-container {
+    max-width: 600px;
+    margin: 40px auto;
+    background-color: #2d3748;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    padding: 40px 45px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.perfil-img {
+    width: 200px; /* Tamaño grande para la página de perfil */
+    height: 200px;
+    border-radius: 50%; /* Circular */
+    border: 6px solid #4a5568;
+    margin-bottom: 25px;
+    object-fit: cover;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.perfil-nombre {
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.perfil-email {
+    color: #cbd5e0;
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 35px;
+    word-break: break-all;
+}
+
+.linea-perfil {
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #48bb78, #38b2ac);
+    margin: 0 auto 35px;
+    border-radius: 2px;
+}
+
+.perfil-acciones {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 350px;
+}
+
+/* * Los estilos para .btn-juego y .btn-logout 
+ * ya están en style_Header.css. 
+ * Solo ajustamos su display para este contenedor.
+ */
+
+.perfil-acciones .btn-juego,
+.perfil-acciones .btn-logout {
+    margin-left: 0; /* Reseteamos el margen auto del header */
+    text-align: center;
+    display: block; /* Hacemos que ocupen todo el ancho */
+    width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .perfil-container {
+        margin: 20px auto;
+        padding: 30px 25px;
+    }
+
+    .perfil-img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .perfil-nombre {
+        font-size: 24px;
+    }
+
+    .perfil-email {
+        font-size: 16px;
+    }
+}

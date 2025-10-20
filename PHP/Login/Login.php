@@ -8,7 +8,7 @@ session_start();
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Login | LevelUp Library</title>
-        <link rel="stylesheet" href="../../CSS/style_Form_Registro_Login.css">
+        <link rel="stylesheet" href="../../CSS/style_Form_Login_Perfil.css">
     </head>
 
     <body>
@@ -33,7 +33,10 @@ session_start();
 
                 <input type="submit">
 
-                <input type="checkbox" name="guardarSesion"> Recordar-me
+                <div class="campo-checkbox">
+                    <input type="checkbox" name="guardarSesion" id="guardarSesion"> 
+                    <label for="guardarSesion">Recordar-me</label>
+                </div>
             </form>
 
             <p> Aun no tienes Cuenta? <a href="../Registro/Registro.php" target="_self"> Registrate </a> </p>

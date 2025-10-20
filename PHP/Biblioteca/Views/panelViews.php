@@ -16,8 +16,8 @@ require 'viewsJuegos_DB.php';
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Perfil | LevelUp Library</title>
-        <link rel="stylesheet" href="../../../CSS/style_Pagina.css">
         <link rel="stylesheet" href="../../../CSS/style_Header.css">
+        <link rel="stylesheet" href="../../../CSS/style_PanelViews.css">
     </head>
 
     <body>
@@ -34,28 +34,45 @@ require 'viewsJuegos_DB.php';
             <a href="../Perfil.php"><img src="../<?php echo $_SESSION["fotoLogin"]; ?>" style="width:64px; border-radius:64px;"></a>
         </header>
 
-        <div>
-            <h1>Total Visualizaciones</h1>
-            <p><?php echo $viewsTotales; ?></p>
-            <br>
+        <div class="stats-container-grid">
+            <div class="stats-col-main">
+                <div class="stat-card total-views">
+                    <h1>Total Visualizaciones</h1>
+                    <p><?php echo $viewsTotales; ?></p>
+                </div>
+                
+                <div class="stat-card top-games">
+                    <h1>Top 3 Más Vistos</h1>
+                    <div class="stat-list">
+                    <?php
+                        if (empty($resultTop)) {
+                            echo "<p><span>No hay datos suficientes.</span></p>";
+                        } else {
+                            foreach ($resultTop as $juego) {
+                                echo "<p><span>" . htmlspecialchars($juego["titulo"]) . "</span> <span>" . $juego["visualizaciones"] . " Views</span></p>";
+                            }
+                        }
+                    ?>
+                    </div>
+                </div>
 
-            <h1>Top 3 Más Vistos</h1>
-            <div>
-            <?php
-                foreach ($resultTop as $juego) {
-                    echo "<p> Titulo: " . htmlspecialchars($juego["titulo"]) . " / Views: " . $juego["visualizaciones"] . "</p>";
-                }   
-            ?>
             </div>
-            <br>
 
-            <h1>Todas las Visualizaciones</h1>
-            <div>
-            <?php
-                foreach ($resultTodos as $juego) {
-                    echo "<p> Titulo: " . htmlspecialchars($juego["titulo"]) . " / Views: " . $juego["visualizaciones"] . "</p>";
-                }   
-            ?>
+            <div class="stats-col-all-games">
+                <div class="stat-card all-games-list">
+                    <h1>Todos tus Juegos</h1>
+                    <div class="stat-list scrollable-list">
+                    <?php
+                        if (empty($resultTodos)) {
+                            echo "<p><span>Aún no has añadido ningún juego.</span></p>";
+                        } else {
+                            foreach ($resultTodos as $juego) {
+                                echo "<p><span>" . htmlspecialchars($juego["titulo"]) . "</span> <span>" . $juego["visualizaciones"] . " Views</span></p>";
+                            }
+                        }
+                    ?>
+                    </div>
+                </div>
             </div>
         </div>
     </body>

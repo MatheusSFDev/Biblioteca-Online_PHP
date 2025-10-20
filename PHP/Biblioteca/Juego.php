@@ -33,6 +33,7 @@ require 'Votos/haVotado_DB.php';
                 xmlhttp.onreadystatechange=function() {
                     if (this.readyState==4 && this.status==200) {
                         document.getElementById("votar").innerHTML = this.responseText;
+                        document.getElementById("votar").classList.add("votado");
                     }
                 }
 
@@ -58,16 +59,20 @@ require 'Votos/haVotado_DB.php';
 
         <div class="juego-detalle">
             <div class="juego-header">
-                <h1><?php echo htmlspecialchars($result["titulo"]); ?></h1>
-                <h2>Por <?php echo htmlspecialchars($result["autor"]); ?></h2>
-
+                <div class="juego-header-info">
+                    <h1><?php echo htmlspecialchars($result["titulo"]); ?></h1>
+                    <h2>Por <?php echo htmlspecialchars($result["autor"]); ?></h2>
+                </div>
+                
                 <?php if ($resultVoto === false): ?>
                     <div id="votar">
-                        <img src="../../Imgs/Like.png" width="48px" onclick="votar(1, false)">
-                        <img src="../../Imgs/Dislike.png" width="48px" onclick="votar(0, false)">
-                    </div>
+                        <div class="votar-iconos">
+                            <img src="../../Imgs/Like.png" width="48px" onclick="votar(1, false)">
+                            <img src="../../Imgs/Dislike.png" width="48px" onclick="votar(0, false)">
+                        </div>
+                        </div>
                 <?php else: ?>
-                    <div id="votar">
+                    <div id="votar" class="votado"> 
                         <p>Cargando los Votos...</p>
                         <script> votar(<?php echo $resultVoto["voto"] ?>, true); </script>
                     </div>

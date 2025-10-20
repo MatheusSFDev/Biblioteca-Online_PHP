@@ -37,17 +37,28 @@ try {
 $total = $likes + $nolikes;
 $porcntLikes = round($likes / ($total / 100));
 $porcntNolikes = round($nolikes / ($total / 100));
+
+$anchoTotalBarra = 150; 
+$anchoLikes = ($anchoTotalBarra * ($porcntLikes / 100));
+$anchoNolikes = ($anchoTotalBarra * ($porcntNolikes / 100));
+
+if ($anchoLikes == 0 && $anchoNolikes > 0) $anchoNolikes = $anchoTotalBarra;
+if ($anchoNolikes == 0 && $anchoLikes > 0) $anchoLikes = $anchoTotalBarra;
 ?>
 
-<?php if ($voto == 1): ?>
-    <img src="../../Imgs/Like_Elegido.png" width="48px">
-    <img src="../../Imgs/Dislike.png" width="48px">
-<?php else: ?>
-    <img src="../../Imgs/Like.png" width="48px">
-    <img src="../../Imgs/Dislike_Elegido.png" width="48px">
-<?php endif; ?>
+<div class="votar-iconos">
+    <?php if ($voto == 1): ?>
+        <img src="../../Imgs/Like_Elegido.png" width="48px">
+        <img src="../../Imgs/Dislike.png" width="48px">
+    <?php else: ?>
+        <img src="../../Imgs/Like.png" width="48px">
+        <img src="../../Imgs/Dislike_Elegido.png" width="48px">
+    <?php endif; ?>
+</div>
 
-<div style="display: flex;">
-    <?php echo $porcntLikes; ?> <div style="width: <?php echo $porcntLikes; ?>px; height: 24px; background-color: blue;"></div>
-    <div style="width: <?php echo $porcntNolikes; ?>px; height: 24px; background-color: red;"></div> <?php echo $porcntNolikes; ?>
+<div class="votar-barra" style="display: flex;">
+    <?php echo $porcntLikes; ?>% 
+    <div style="width: <?php echo $anchoLikes; ?>px; height: 24px; background-color: blue;"></div>
+    <div style="width: <?php echo $anchoNolikes; ?>px; height: 24px; background-color: red;"></div> 
+    <?php echo $porcntNolikes; ?>%
 </div>

@@ -1,4 +1,6 @@
-/* style_Juego.css - Página de detalle del juego */
+/* * style_Juego.css (Modificado)
+ * Página de detalle del juego
+ */
 
 * {
     margin: 0;
@@ -27,6 +29,16 @@ body {
     padding: 40px;
     margin-bottom: 30px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    
+    /* --- Flexbox para alinear info y votación --- */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Alinear arriba */
+    gap: 30px;
+}
+
+.juego-header-info {
+    flex-grow: 1; /* El bloque de info ocupa el espacio sobrante */
 }
 
 .juego-header h1 {
@@ -43,6 +55,77 @@ body {
     font-weight: 600;
     margin-bottom: 10px;
 }
+
+/*
+ * --- SECCIÓN DE VOTACIÓN MODIFICADA ---
+ */
+
+#votar {
+    display: flex;
+    flex-direction: column; /* Apila iconos y barra */
+    align-items: center; /* Centra los iconos y la barra */
+    gap: 15px; /* Espacio entre iconos y barra */
+    flex-shrink: 0; /* Evita que el bloque se encoja */
+}
+
+.votar-iconos {
+    display: flex;
+    gap: 15px; /* Espacio entre like y dislike */
+}
+
+#votar img {
+    width: 40px;
+    height: 40px;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+}
+
+/* Efectos HOVER SÓLO si #votar NO tiene la clase .votado */
+#votar:not(.votado) .votar-iconos img {
+    cursor: pointer;
+}
+#votar:not(.votado) .votar-iconos img:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Estilos CUANDO SÍ tiene la clase .votado */
+#votar.votado .votar-iconos img {
+    cursor: default; /* Sin cursor pointer */
+    opacity: 1; /* Opacidad completa */
+}
+
+/* Contenedor de la barra de progreso */
+.votar-barra {
+    display: flex !important; /* Sobrescribe el inline style */
+    align-items: center;
+    gap: 5px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    min-width: 150px; /* Ancho mínimo para la barra */
+}
+
+/* Barra de Likes (primer div hijo) */
+.votar-barra > div:nth-of-type(1) {
+    background-color: #48bb78 !important; /* Sobrescribe inline 'blue' */
+    height: 12px !important; /* Sobrescribe inline '24px' */
+    border-radius: 6px 0 0 6px;
+    margin-left: 8px;
+    transition: width 0.5s ease;
+}
+
+/* Barra de Dislikes (segundo div hijo) */
+.votar-barra > div:nth-of-type(2) {
+    background-color: #fc8181 !important; /* Sobrescribe inline 'red' */
+    height: 12px !important; /* Sobrescribe inline '24px' */
+    border-radius: 0 6px 6px 0;
+    margin-right: 8px;
+    transition: width 0.5s ease;
+}
+
+/* --- FIN DE LA SECCIÓN MODIFICADA --- */
+
 
 /* Grid de contenido */
 .juego-contenido {
@@ -74,6 +157,8 @@ body {
     font-size: 16px;
     line-height: 1.8;
     margin-bottom: 30px;
+    white-space: pre-wrap; /* Respeta saltos de línea y espacios */
+    word-break: break-word;
 }
 
 /* Detalles del juego */
@@ -214,14 +299,23 @@ body {
     
     .juego-header {
         padding: 30px 25px;
+        /* --- Apilamos el header en móvil --- */
+        flex-direction: column;
+        align-items: center;
     }
     
+    .juego-header-info {
+        text-align: center; /* Centramos título y autor */
+        width: 100%;
+    }
+
     .juego-header h1 {
         font-size: 28px;
     }
     
     .juego-header h2 {
         font-size: 18px;
+        margin-bottom: 25px; /* Espacio antes de los votos */
     }
     
     .juego-info {
@@ -266,5 +360,15 @@ body {
     .btn-accion {
         width: 100%;
         justify-content: center;
+    }
+
+    #votar {
+        gap: 10px;
+    }
+    
+    .votar-barra {
+        min-width: 100%; /* La barra ocupa todo el ancho */
+        margin-top: 10px;
+        font-size: 12px;
     }
 }

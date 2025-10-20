@@ -98,7 +98,7 @@ function guardarCokkie($conn) {
         setcookie("cookieSesion", $cookie, [
             'expires' => time() + (30 * 24 * 60 * 60),
             'path' => '/',
-            'secure' => true,
+            'secure' => false,
             'httponly' => true,
             'samesite' => 'Lax'
         ]);

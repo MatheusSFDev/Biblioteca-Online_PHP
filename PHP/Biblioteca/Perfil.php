@@ -12,8 +12,8 @@ if (!isset($_SESSION["emailLogin"])) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Perfil | LevelUp Library</title>
-        <link rel="stylesheet" href="../../CSS/style_Pagina.css">
         <link rel="stylesheet" href="../../CSS/style_Header.css">
+        <link rel="stylesheet" href="../../CSS/style_Perfil.css">
     </head>
 
     <body>
@@ -30,15 +30,18 @@ if (!isset($_SESSION["emailLogin"])) {
             <a href="Perfil.php"><img src="<?php echo $_SESSION["fotoLogin"]; ?>" style="width:64px; border-radius:64px;"></a>
         </header>
 
-        <div>
-            <p> <?php echo htmlspecialchars($_SESSION["nombreLogin"]); ?> </p>
-            <p> <?php echo htmlspecialchars($_SESSION["emailLogin"]); ?> </p>
-            <img src="<?php echo $_SESSION["fotoLogin"]; ?>" style="width:248px; border-radius:64px;">
+        <div class="perfil-container">
+            <img src="<?php echo $_SESSION["fotoLogin"]; ?>" class="perfil-img">
+            <p class="perfil-nombre"> <?php echo htmlspecialchars($_SESSION["nombreLogin"]); ?> </p>
+            <p class="perfil-email"> <?php echo htmlspecialchars($_SESSION["emailLogin"]); ?> </p>
 
-            <a href="Views/panelViews.php" class="btn-juego">Estadisticas</a>
-            
-            <a href="Modificar/modificarPerfil.php" class="btn-juego">Editar Perfil</a>
-            <a href="../LogOut.php" class="btn-logout">Cerrar Sesión</a>
+            <div class="linea-perfil"></div>
+
+            <div class="perfil-acciones">
+                <a href="Views/panelViews.php" class="btn-juego">Estadisticas</a>
+                <a href="Modificar/modificarPerfil.php" class="btn-juego">Editar Perfil</a>
+                <a href="../LogOut.php" class="btn-logout">Cerrar Sesión</a>
+            </div>
         </div>
     </body>
 </html>
