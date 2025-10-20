@@ -21,6 +21,10 @@ if (datosCorrectos($email, $passwd)) {
                 $_SESSION["emailLogin"] = $result["email"];
                 $_SESSION["fotoLogin"] = $result["foto"];
 
+                if (isset($_POST["guardarSesion"])) {
+                    guardarCokkie($conn);
+                }
+
                 $conn = null;
                 header("Location: ../Biblioteca/Pagina.php");
                 exit;
@@ -75,5 +79,31 @@ function datosCorrectos($email, $passwd) {
     }
 
     return $correcto;
+}
+
+function guardarCokkie($conn) {
+    $cookie = bin2hex(random_bytes(32));
+    $correcto = false;
+
+    try {
+        $sentencia = $conn->prepare("INSERT INTO cookies(cookie, usuario, fecha_exp) VALUE (:cookie, :usuario, NOW() + INTERVAL 30 DAY)");
+        $sentencia->bindParam(":cookie", $cookie);
+        $sentencia->bindParam(":usuario", $_SESSION["emailLogin"]);
+        $correcto = $sentencia->execute();
+    } catch (PDOException $ex) {
+        echo "Operación Fallida";
+    }
+
+    if ($correcto) {
+        setcookie("cookieSesion", $cookie, [
+            'expires' => time() + (30 * 24 * 60 * 60),
+            'path' => '/',
+            'secure' => true,
+            'httponly' => true,
+            'samesite' => 'Lax'
+        ]);
+    } else {
+        echo "Operación Fallida";
+    }
 }
 ?>

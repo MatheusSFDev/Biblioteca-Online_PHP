@@ -32,6 +32,8 @@ session_start();
                 </div>
 
                 <input type="submit">
+
+                <input type="checkbox" name="guardarSesion"> Recordar-me
             </form>
 
             <p> Aun no tienes Cuenta? <a href="../Registro/Registro.php" target="_self"> Registrate </a> </p>

@@ -33,5 +33,14 @@ CREATE TABLE votos (
     CONSTRAINT vot_id_fk FOREIGN KEY (id) REFERENCES juegos(id)
 );
 
+CREATE TABLE cookies (
+    cookie varchar(255),
+    usuario varchar(255),
+    fecha_Exp datetime,
+
+    CONSTRAINT cok_pk  PRIMARY KEY (cookie, usuario),
+    CONSTRAINT cok_usu_fk FOREIGN KEY (usuario) REFERENCES usuarios(email)
+);
+
 CREATE USER 'adminPHP'@'localhost' identified by 'qwerty-1234';
 GRANT all ON bibliotecaOnline.* TO 'adminPHP'@'localhost'; 
