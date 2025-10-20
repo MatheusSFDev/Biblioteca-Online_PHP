@@ -1,5 +1,5 @@
 <?php
-require '../Conexion_DB.php';
+require '../../Conexion_DB.php';
 
 try {
     $sentencia = $conn->prepare("SELECT sum(visualizaciones) AS 'Views' FROM juegos GROUP BY propietario HAVING propietario LIKE(:email)");

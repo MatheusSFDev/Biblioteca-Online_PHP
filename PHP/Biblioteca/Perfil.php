@@ -25,17 +25,17 @@ if (!isset($_SESSION["emailLogin"])) {
                     1v5h3V9.671l-6-5.333-6 5.333zM13 19v-4h-2v4h2z" fill="#ffffffff"/>
                 </svg>
             </a>
-            <p class="welcome-user">Hola <?php echo $_SESSION["nombreLogin"]; ?>!</p>
+            <p class="welcome-user">Hola <?php echo htmlspecialchars($_SESSION["nombreLogin"]); ?>!</p>
             <a href="Crear/nuevoJuego.php" class="btn-juego">Añadir Juego</a>
             <a href="Perfil.php"><img src="<?php echo $_SESSION["fotoLogin"]; ?>" style="width:64px; border-radius:64px;"></a>
         </header>
 
         <div>
-            <p> <?php echo $_SESSION["nombreLogin"]; ?> </p>
-            <p> <?php echo $_SESSION["emailLogin"]; ?> </p>
+            <p> <?php echo htmlspecialchars($_SESSION["nombreLogin"]); ?> </p>
+            <p> <?php echo htmlspecialchars($_SESSION["emailLogin"]); ?> </p>
             <img src="<?php echo $_SESSION["fotoLogin"]; ?>" style="width:248px; border-radius:64px;">
 
-            <a href="panelViews.php" class="btn-juego">Estadisticas</a>
+            <a href="Views/panelViews.php" class="btn-juego">Estadisticas</a>
             
             <a href="Modificar/modificarPerfil.php" class="btn-juego">Editar Perfil</a>
             <a href="../LogOut.php" class="btn-logout">Cerrar Sesión</a>

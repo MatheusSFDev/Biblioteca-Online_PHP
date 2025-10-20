@@ -30,7 +30,7 @@ CREATE TABLE votos (
 
     CONSTRAINT vot_pk  PRIMARY KEY (email, id),
     CONSTRAINT vot_em_fk FOREIGN KEY (email) REFERENCES usuarios(email),
-    CONSTRAINT vot_id_fk FOREIGN KEY (id) REFERENCES juegos(id)
+    CONSTRAINT vot_id_fk FOREIGN KEY (id) REFERENCES juegos(id) ON DELETE CASCADE
 );
 
 CREATE TABLE cookies (

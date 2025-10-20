@@ -128,7 +128,7 @@ function guardarFoto() {
         }
 
         if ($_FILES["caratula"]["size"] > 10000000) { // 10 MB
-            $_SESSION["err_caratula"] = "<p>! La Imagen supera el limite de 512 KB !</p>";
+            $_SESSION["err_caratula"] = "<p>! La Imagen supera el limite de 10 MB !</p>";
             return "false";
         }
 

@@ -18,6 +18,15 @@ require 'leerJuegos_DB.php';
         <link rel="stylesheet" href="../../CSS/style_Header.css">
 
         <script>
+            let searchTimeout; 
+
+            function debouncedSearch(busca) {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    barraBusqueda(busca);
+                }, 300);
+            }
+
             function barraBusqueda(busca) {
                 let xmlhttp = new XMLHttpRequest();
 
@@ -57,9 +66,9 @@ require 'leerJuegos_DB.php';
                     1v5h3V9.671l-6-5.333-6 5.333zM13 19v-4h-2v4h2z" fill="#ffffffff"/>
                 </svg>
             </a>
-            <p class="welcome-user">Hola <?php echo $_SESSION["nombreLogin"]; ?>!</p>
+            <p class="welcome-user">Hola <?php echo htmlspecialchars($_SESSION["nombreLogin"]); ?>!</p>
             <form>
-                <input type="text" onkeyup="barraBusqueda(this.value)" placeholder="Buscar Juegos...">
+                <input type="text" onkeyup="debouncedSearch(this.value)" placeholder="Buscar Juegos...">
             </form>
             <a href="Crear/nuevoJuego.php" class="btn-juego">Añadir Juego</a>
             <a href="Perfil.php"><img src="<?php echo $_SESSION["fotoLogin"]; ?>" style="width:64px; border-radius:64px;"></a>
@@ -70,8 +79,8 @@ require 'leerJuegos_DB.php';
             foreach ($result as $juego) {
                 echo "<a id=\"" . $juego["id"] . "\" href=\"Juego.php?id=" . $juego["id"] . "\">";
                     echo "<div class=\"juego\" style=\"background-image: url(" . $juego["caratula"] . ");\">";
-                        echo "<h1 class=\"titulo\">" . $juego["titulo"] . "</h1>";
-                        echo "<h2 class=\"autor\">" . $juego["autor"] . "</h2>";
+                        echo "<h1 class=\"titulo\">" . htmlspecialchars($juego["titulo"]) . "</h1>";
+                        echo "<h2 class=\"autor\">" . htmlspecialchars($juego["autor"]) . "</h2>";
                     echo "</div>";
                 echo "</a>";
             }

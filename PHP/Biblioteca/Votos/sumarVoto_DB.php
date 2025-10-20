@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../Conexion_DB.php';
+require '../../Conexion_DB.php';
 
 $voto = $_GET["voto"];
 $email = $_SESSION["emailLogin"];

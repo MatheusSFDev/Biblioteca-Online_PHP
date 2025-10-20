@@ -12,8 +12,8 @@ if ($result === false) {
     exit;
 } 
 
-require 'sumarViews_DB.php';
-require 'haVotado_DB.php';
+require 'Views/sumarView_DB.php';
+require 'Votos/haVotado_DB.php';
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +36,7 @@ require 'haVotado_DB.php';
                     }
                 }
 
-                xmlhttp.open("GET", "sumarVoto_DB.php?voto=" + voto + "&id=" + urlParams.get('id') + "&votado=" + yaVotado, true);
+                xmlhttp.open("GET", "Votos/sumarVoto_DB.php?voto=" + voto + "&id=" + urlParams.get('id') + "&votado=" + yaVotado, true);
                 xmlhttp.send();
             }
         </script>
@@ -51,15 +51,15 @@ require 'haVotado_DB.php';
                     1v5h3V9.671l-6-5.333-6 5.333zM13 19v-4h-2v4h2z" fill="#ffffffff"/>
                 </svg>
             </a>
-            <p class="welcome-user">Hola <?php echo $_SESSION["nombreLogin"]; ?>!</p>
+            <p class="welcome-user">Hola <?php echo htmlspecialchars($_SESSION["nombreLogin"]); ?>!</p>
             <a href="Crear/nuevoJuego.php" class="btn-juego">Añadir Juego</a>
             <a href="Perfil.php"><img src="<?php echo $_SESSION["fotoLogin"]; ?>" style="width:64px; border-radius:64px;"></a>
         </header>
 
         <div class="juego-detalle">
             <div class="juego-header">
-                <h1><?php echo $result["titulo"]; ?></h1>
-                <h2>Por <?php echo $result["autor"]; ?></h2>
+                <h1><?php echo htmlspecialchars($result["titulo"]); ?></h1>
+                <h2>Por <?php echo htmlspecialchars($result["autor"]); ?></h2>
 
                 <?php if ($resultVoto === false): ?>
                     <div id="votar">
@@ -77,12 +77,12 @@ require 'haVotado_DB.php';
             <div class="juego-contenido">
                 <div class="juego-info">
                     <h3>Descripción</h3>
-                    <p class="descripcion"><?php echo $result["descripcion"]; ?></p>
+                    <p class="descripcion"><?php echo htmlspecialchars($result["descripcion"]); ?></p>
 
                     <div class="juego-detalles">
                         <div class="detalle-item">
                             <span class="detalle-label">Categoría:</span>
-                            <span class="detalle-valor"><?php echo $result["categoria"]; ?></span>
+                            <span class="detalle-valor"><?php echo htmlspecialchars($result["categoria"]); ?></span>
                         </div>
 
                         <?php if ($result["ano"] != 0): ?>
