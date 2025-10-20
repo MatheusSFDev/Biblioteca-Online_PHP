@@ -1,7 +1,7 @@
 <?php
 session_start(); 
 if (!isset($_SESSION["emailLogin"])) {
-    header("Location: ../Login/Login.php");
+    header("Location: ../../index.php");
     exit;
 }
 

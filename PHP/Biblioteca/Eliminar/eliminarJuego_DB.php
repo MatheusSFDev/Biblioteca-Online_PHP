@@ -1,5 +1,10 @@
 <?php
 session_start();
+if (!isset($_SESSION["emailLogin"])) {
+    header("Location: ../../../index.php");
+    exit;
+}
+
 require '../../Conexion_DB.php';
 require '../leerJuegos_DB.php';
 

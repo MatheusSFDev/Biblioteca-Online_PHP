@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (!isset($_SESSION["emailLogin"])) {
+    header("Location: ../../../index.php");
+    exit;
+}
 
 $titulo = $_POST["titulo"];
 $descripcion = $_POST["descripcion"];

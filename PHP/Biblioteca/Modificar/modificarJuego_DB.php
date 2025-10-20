@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (!isset($_SESSION["emailLogin"])) {
+    header("Location: ../../../index.php");
+    exit;
+}
 
 if ($_SESSION["emailLogin"] !== $_POST["propietario"]) {
     header("Location: ../Pagina.php");
