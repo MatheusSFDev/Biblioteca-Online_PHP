@@ -8,7 +8,7 @@ try {
 
     $result = $sentencia->fetch(PDO::FETCH_ASSOC);
 
-    $viewsTotales = $result["Views"];
+    $viewsTotales = ($result !== false) ? $result["Views"] : 0;
     $conn = null;
 } catch (PDOException $ex) {
     $conn = null;

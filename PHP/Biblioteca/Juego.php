@@ -12,7 +12,8 @@ if ($result === false) {
     exit;
 } 
 
-require ("sumarViews_DB.php");
+require 'sumarViews_DB.php';
+require 'haVotado_DB.php';
 ?>
 
 <!DOCTYPE html>
@@ -23,6 +24,22 @@ require ("sumarViews_DB.php");
         <title>Juego | LevelUp Library</title>
         <link rel="stylesheet" href="../../CSS/style_Header.css">
         <link rel="stylesheet" href="../../CSS/style_Juego.css">
+
+        <script>
+            function votar(voto, yaVotado) {
+                var xmlhttp=new XMLHttpRequest();
+                const urlParams = new URLSearchParams(window.location.search);
+
+                xmlhttp.onreadystatechange=function() {
+                    if (this.readyState==4 && this.status==200) {
+                        document.getElementById("votar").innerHTML = this.responseText;
+                    }
+                }
+
+                xmlhttp.open("GET", "sumarVoto_DB.php?voto=" + voto + "&id=" + urlParams.get('id') + "&votado=" + yaVotado, true);
+                xmlhttp.send();
+            }
+        </script>
     </head>
 
     <body>
@@ -43,6 +60,18 @@ require ("sumarViews_DB.php");
             <div class="juego-header">
                 <h1><?php echo $result["titulo"]; ?></h1>
                 <h2>Por <?php echo $result["autor"]; ?></h2>
+
+                <?php if ($resultVoto === false): ?>
+                    <div id="votar">
+                        <img src="../../Imgs/Like.png" width="48px" onclick="votar(1, false)">
+                        <img src="../../Imgs/Dislike.png" width="48px" onclick="votar(0, false)">
+                    </div>
+                <?php else: ?>
+                    <div id="votar">
+                        <p>Cargando los Votos...</p>
+                        <script> votar(<?php echo $resultVoto["voto"] ?>, true); </script>
+                    </div>
+                <?php endif; ?>
             </div>
 
             <div class="juego-contenido">

@@ -1,2 +1,1 @@
-1. Sistema de Votos
-2. Login con Cookies
+1. Login con Cookies
