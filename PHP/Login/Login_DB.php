@@ -82,6 +82,7 @@ function datosCorrectos($email, $passwd) {
 }
 
 function guardarCokkie($conn) {
+    date_default_timezone_set("UTC");
     $cookie = bin2hex(random_bytes(32));
     $correcto = false;
 
